@@ -5,7 +5,7 @@ import '../models/report.dart';
 
 enum UserRole { parent, teacher, doctor }
 
-enum AppLanguage { en, fr, ar }
+enum AppLanguage { fr, ar }
 
 class AppState extends ChangeNotifier {
   UserRole role = UserRole.parent;

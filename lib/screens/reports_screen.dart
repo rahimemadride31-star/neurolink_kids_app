@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../app_theme.dart';
+import '../data/strings.dart';
 import '../models/report.dart';
 import '../state/app_state.dart';
 
@@ -20,12 +21,12 @@ class ReportsList extends StatelessWidget {
       return Container(
         padding: const EdgeInsets.symmetric(vertical: 40),
         alignment: Alignment.center,
-        child: const Column(
+        child: Column(
           children: [
-            Icon(Icons.event_note, size: 56, color: AppColors.textMuted),
-            SizedBox(height: 8),
-            Text('Aucun rapport pour le moment',
-                style: TextStyle(color: AppColors.textMuted)),
+            const Icon(Icons.event_note, size: 56, color: AppColors.textMuted),
+            const SizedBox(height: 8),
+            Text(S.get('no_reports'),
+                style: const TextStyle(color: AppColors.textMuted)),
           ],
         ),
       );
@@ -148,7 +149,7 @@ class ReportCard extends StatelessWidget {
           ]),
           const SizedBox(height: 10),
           if (report.behaviors.isNotEmpty) ...[
-            const Text('Behavior:',
+            Text('${S.get('behavior_label')}:',
                 style: TextStyle(color: AppColors.textMuted, fontSize: 12)),
             const SizedBox(height: 4),
             Wrap(
@@ -161,7 +162,7 @@ class ReportCard extends StatelessWidget {
             const SizedBox(height: 8),
           ],
           if (report.learningActivities.isNotEmpty) ...[
-            const Text('Learning Activities:',
+            Text('${S.get('learning_activities')}:',
                 style: TextStyle(color: AppColors.textMuted, fontSize: 12)),
             const SizedBox(height: 4),
             Wrap(
@@ -174,7 +175,7 @@ class ReportCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
           ],
-          const Text('Performance:',
+          Text('${S.get('performance_label')}:',
               style: TextStyle(color: AppColors.textMuted, fontSize: 12)),
           const SizedBox(height: 4),
           Container(
@@ -209,7 +210,7 @@ class ReportCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Unusual Behavior',
+                        Text(S.get('strange_behavior'),
                             style: TextStyle(
                                 color: AppColors.accentRed,
                                 fontWeight: FontWeight.w900)),
@@ -226,7 +227,7 @@ class ReportCard extends StatelessWidget {
           ],
           if (report.notes.isNotEmpty) ...[
             const Divider(height: 22),
-            const Text('Notes:',
+            Text('${S.get('notes_label')}:',
                 style: TextStyle(color: AppColors.textMuted, fontSize: 12)),
             const SizedBox(height: 2),
             Text(report.notes),

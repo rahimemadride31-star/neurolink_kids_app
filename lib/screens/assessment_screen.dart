@@ -210,7 +210,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
         toolbarHeight: 64,
       ),
       body: KidsBackground(
-        overlayOpacity: 0.95,
+        overlayOpacity: 0.62,
         child: Column(
           children: [
             ClipRRect(

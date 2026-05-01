@@ -38,9 +38,8 @@ class LanguageSwitcher extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        chip(AppLanguage.en, 'GB'),
         chip(AppLanguage.fr, 'FR'),
-        chip(AppLanguage.ar, 'SA'),
+        chip(AppLanguage.ar, 'AR'),
       ],
     );
   }

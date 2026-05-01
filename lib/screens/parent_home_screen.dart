@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../app_theme.dart';
 import '../data/activities.dart';
+import '../data/strings.dart';
 import '../state/app_state.dart';
 import '../widgets/kids_background.dart';
 import '../widgets/language_switcher.dart';
@@ -26,7 +28,7 @@ class _ParentHomeScreenState extends State<ParentHomeScreen> {
     final child = state.activeChild;
     return Scaffold(
       body: KidsBackground(
-        overlayOpacity: 0.92,
+        overlayOpacity: 0.60,
         child: SafeArea(
           child: ListView(
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
@@ -113,7 +115,12 @@ class _ParentHomeScreenState extends State<ParentHomeScreen> {
 
   List<Widget> _reportsContent(BuildContext context) {
     return [
-      const ReportsList(),
+      ReportsList(filterChild: AppStateScope.of(context).activeChild.name),
+      const SizedBox(height: 18),
+      Text(S.get('medical_reports'),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
+      const SizedBox(height: 8),
+      _MedicalReportsSection(),
       const SizedBox(height: 12),
       _AddReportButton(onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
@@ -132,7 +139,7 @@ class _Header extends StatelessWidget {
       children: [
         Image.asset('assets/images/logo.png', width: 46, height: 46),
         const SizedBox(width: 6),
-        const Text('NeuroLink\nKids',
+        Text('${S.get('app_name')}\n',
             style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w900,
@@ -203,15 +210,15 @@ class _Greeting extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Hello,  👋',
-              style: TextStyle(color: AppColors.textMuted)),
+          Text(S.get('hello'),
+              style: const TextStyle(color: AppColors.textMuted)),
           const SizedBox(height: 4),
           Text(name,
               style: const TextStyle(
                   fontSize: 28, fontWeight: FontWeight.w900)),
           const SizedBox(height: 4),
-          const Text("Let's learn something new today!",
-              style: TextStyle(color: AppColors.textMuted)),
+          Text(S.get('lets_learn'),
+              style: const TextStyle(color: AppColors.textMuted)),
         ],
       ),
     );
@@ -223,7 +230,7 @@ class _SearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-        hintText: 'Rechercher...',
+        hintText: S.get('search'),
         prefixIcon: const Icon(Icons.search),
         suffixIcon: const Icon(Icons.mic_none_rounded),
         filled: true,
@@ -289,7 +296,7 @@ class _TopTabs extends StatelessWidget {
       );
     }
 
-    return Row(children: [tab(0, 'Activities'), tab(1, 'Reports')]);
+    return Row(children: [tab(0, S.get('activities_tab')), tab(1, S.get('reports_tab'))]);
   }
 }
 
@@ -308,8 +315,8 @@ class _SectionHeader extends StatelessWidget {
         const Spacer(),
         TextButton(
             onPressed: onSeeAll,
-            child: const Text('See All  →',
-                style: TextStyle(fontWeight: FontWeight.w800))),
+            child: Text(S.get('see_all'),
+                style: const TextStyle(fontWeight: FontWeight.w800))),
       ],
     );
   }
@@ -770,6 +777,87 @@ class _RetakeAssessmentBanner extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _MedicalReportsSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final state = AppStateScope.of(context);
+    final childName = state.activeChild.name;
+    final medReports = state.medicalReports
+        .where((r) => r.patientName == childName)
+        .toList();
+
+    if (medReports.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: Center(
+          child: Text(S.get('no_medical_reports'),
+              style: const TextStyle(color: AppColors.textMuted)),
+        ),
+      );
+    }
+
+    return Column(
+      children: medReports
+          .map((r) => Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: AppColors.border),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(children: [
+                      Expanded(
+                        child: Text(
+                            DateFormat('dd/MM/yyyy').format(r.date),
+                            style: const TextStyle(
+                                color: AppColors.textMuted,
+                                fontSize: 12)),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: AppColors.accentTeal.withOpacity(0.15),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(S.get('role_doctor'),
+                            style: const TextStyle(
+                                color: AppColors.accentTeal,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 11)),
+                      ),
+                    ]),
+                    if (r.observation.isNotEmpty) ...[
+                      const SizedBox(height: 6),
+                      Text(r.observation,
+                          style: const TextStyle(fontSize: 13)),
+                    ],
+                    if (r.diagnosisUpdate.isNotEmpty) ...[
+                      const SizedBox(height: 4),
+                      Text(r.diagnosisUpdate,
+                          style: const TextStyle(
+                              color: AppColors.accentPurple,
+                              fontSize: 12)),
+                    ],
+                    if (r.recommendations.isNotEmpty) ...[
+                      const SizedBox(height: 4),
+                      Text('${S.get('recommendations')}: ${r.recommendations}',
+                          style: const TextStyle(
+                              color: AppColors.textMuted,
+                              fontSize: 12)),
+                    ],
+                  ],
+                ),
+              ))
+          .toList(),
     );
   }
 }

@@ -45,7 +45,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
         title: const Text('Ajouter un enfant'),
       ),
       body: KidsBackground(
-        overlayOpacity: 0.92,
+        overlayOpacity: 0.60,
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
           child: Column(

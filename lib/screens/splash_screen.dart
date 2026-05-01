@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/kids_background.dart';
-import 'welcome_screen.dart';
+import 'language_selection_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen>
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
           transitionDuration: const Duration(milliseconds: 600),
-          pageBuilder: (_, __, ___) => const WelcomeScreen(),
+          pageBuilder: (_, __, ___) => const LanguageSelectionScreen(),
           transitionsBuilder: (_, anim, __, child) =>
               FadeTransition(opacity: anim, child: child),
         ),
@@ -64,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: KidsBackground(
-        overlayOpacity: 0.92,
+        overlayOpacity: 0.60,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

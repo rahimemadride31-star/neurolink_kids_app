@@ -12,7 +12,7 @@ class ActivitiesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: KidsBackground(
-        overlayOpacity: 0.95,
+        overlayOpacity: 0.62,
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16),

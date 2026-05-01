@@ -8,7 +8,7 @@ class KidsBackground extends StatelessWidget {
   const KidsBackground({
     super.key,
     required this.child,
-    this.overlayOpacity = 0.85,
+    this.overlayOpacity = 0.60,
     this.gradientColors,
   });
 
