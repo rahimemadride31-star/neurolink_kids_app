@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     state.setRole(_role);
                     state.userName = _email.text.split('@').first.isEmpty
-                        ? S.get('role_parent')
+                        ? S.get(_role == UserRole.parent ? 'role_parent' : _role == UserRole.teacher ? 'role_teacher' : 'role_doctor')
                         : _email.text.split('@').first;
                     Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(builder: (_) => const HomeShell()),

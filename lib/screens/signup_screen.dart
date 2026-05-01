@@ -162,7 +162,7 @@ class _SignupScreenState extends State<SignupScreen> {
   void _onSignup() {
     final state = AppStateScope.of(context);
     state.userName = _name.text.isEmpty
-        ? S.get('role_parent')
+        ? S.get(_role == UserRole.parent ? 'role_parent' : _role == UserRole.teacher ? 'role_teacher' : 'role_doctor')
         : _name.text;
     state.setRole(_role);
 

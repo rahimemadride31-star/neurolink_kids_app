@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../app_theme.dart';
+import '../data/strings.dart';
 import '../state/app_state.dart';
 
 class LanguageSwitcher extends StatelessWidget {
@@ -12,7 +13,10 @@ class LanguageSwitcher extends StatelessWidget {
     Widget chip(AppLanguage lang, String label) {
       final selected = state.language == lang;
       return GestureDetector(
-        onTap: () => state.setLanguage(lang),
+        onTap: () {
+          state.setLanguage(lang);
+          S.setLanguage(lang);
+        },
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 3),
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
