@@ -139,7 +139,7 @@ class _Header extends StatelessWidget {
       children: [
         Image.asset('assets/images/logo.png', width: 46, height: 46),
         const SizedBox(width: 6),
-        Text('${S.get('app_name')}\n',
+        Text(S.get('app_name'),
             style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w900,

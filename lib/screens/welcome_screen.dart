@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../app_theme.dart';
 import '../data/strings.dart';
+import '../state/app_state.dart';
 import '../widgets/kids_background.dart';
 import '../widgets/language_switcher.dart';
 import '../widgets/primary_button.dart';
@@ -13,6 +14,7 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppStateScope.of(context);
     return Scaffold(
       body: KidsBackground(
         overlayOpacity: 0.55,
