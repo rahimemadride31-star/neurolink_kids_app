@@ -1,3 +1,4 @@
+import '../data/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -70,7 +71,7 @@ class _AddReportScreenState extends State<AddReportScreen> {
       backgroundColor: const Color(0xFFFFF7ED),
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text('Add Report'),
+        title: Text(S.get('add_report')),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -86,12 +87,12 @@ class _AddReportScreenState extends State<AddReportScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Date: ${DateFormat('dd/MM/y').format(now)}',
+                  Text('${S.get("date_label")}: ${DateFormat('dd/MM/y').format(now)}',
                       style: const TextStyle(
                           fontWeight: FontWeight.w800,
                           color: AppColors.textDark)),
                   const SizedBox(height: 4),
-                  Text('Time: ${DateFormat('HH:mm:ss').format(now)}',
+                  Text('${S.get("time_label")}: ${DateFormat('HH:mm:ss').format(now)}',
                       style: const TextStyle(
                           fontWeight: FontWeight.w800,
                           color: AppColors.textDark)),
@@ -230,7 +231,7 @@ class _AddReportScreenState extends State<AddReportScreen> {
                   notes: _notes.text,
                 ));
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Rapport enregistré')),
+                  SnackBar(content: Text(S.get('report_saved'))),
                 );
                 Navigator.of(context).pop();
               },

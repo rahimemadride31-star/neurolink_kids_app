@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../state/app_state.dart';
+import '../../data/strings.dart';
 import '../../widgets/activity_kit.dart';
 
 enum _Tool { brush, eraser, stamp }
@@ -36,7 +37,7 @@ class _DrawingScreenState extends State<DrawingScreen> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Drawing Activity',
+      title: S.get('drawing_activity'),
       titleColor: const Color(0xFF1F2937),
       backgroundColors: const [Color(0xFFFFF8EC), Color(0xFFEEF2FF)],
       child: ListView(
@@ -151,7 +152,7 @@ class _DrawingScreenState extends State<DrawingScreen> {
                 ),
                 const SizedBox(height: 12),
                 if (_tool == _Tool.stamp) ...[
-                  const Text('Stamps',
+                  Text(S.get('stamps'),
                       style: TextStyle(fontWeight: FontWeight.w900)),
                   const SizedBox(height: 6),
                   Wrap(
@@ -182,7 +183,7 @@ class _DrawingScreenState extends State<DrawingScreen> {
                     ],
                   ),
                 ] else ...[
-                  const Text('Colors',
+                  Text(S.get('colors_label'),
                       style: TextStyle(fontWeight: FontWeight.w900)),
                   const SizedBox(height: 6),
                   Wrap(
@@ -211,7 +212,7 @@ class _DrawingScreenState extends State<DrawingScreen> {
                   ),
                 ],
                 const SizedBox(height: 14),
-                const Text('Brush Size',
+                Text(S.get('brush_size'),
                     style: TextStyle(fontWeight: FontWeight.w900)),
                 const SizedBox(height: 6),
                 Row(
@@ -274,14 +275,14 @@ class _DrawingScreenState extends State<DrawingScreen> {
                       ]),
                       borderRadius: BorderRadius.circular(24),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.download_rounded, color: Colors.white),
-                          SizedBox(width: 6),
-                          Text('Save',
-                              style: TextStyle(
+                          const Icon(Icons.download_rounded, color: Colors.white),
+                          const SizedBox(width: 6),
+                          Text(S.get('save'),
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w900,
                               )),

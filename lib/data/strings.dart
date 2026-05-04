@@ -6,10 +6,338 @@ class S {
   static void setLanguage(AppLanguage lang) => _lang = lang;
 
   static String get(String key) {
-    final map = _lang == AppLanguage.ar ? _ar : _fr;
-    return map[key] ?? _fr[key] ?? key;
+    final map = switch (_lang) {
+      AppLanguage.ar => _ar,
+      AppLanguage.en => _en,
+      AppLanguage.fr => _fr,
+    };
+    return map[key] ?? _en[key] ?? key;
   }
 
+  // ── English ──────────────────────────────────────────────
+  static const _en = <String, String>{
+    // General
+    'app_name': 'NeuroLink Kids',
+    'tagline': 'Learn • Practice • Grow',
+    'subtitle': 'Supporting autistic children',
+    'hello': 'Hello, 👋',
+    'search': 'Search...',
+    'save': 'Save',
+    'cancel': 'Cancel',
+    'continue_btn': 'Continue',
+    'back': 'Back',
+    'yes': 'Yes',
+    'no': 'No',
+
+    // Language Selection
+    'choose_language': 'Choose your language',
+    'language_subtitle': 'Select the app language',
+
+    // Welcome
+    'sign_up': 'Sign Up',
+    'log_in': 'Log In',
+
+    // Login
+    'welcome_back': 'Welcome',
+    'login_subtitle': 'Log in to continue',
+    'email': 'Email',
+    'password': 'Password',
+    'carte_nationale': 'National ID Card',
+    'forgot_password': 'Forgot password?',
+    'no_account': 'Don\'t have an account?',
+
+    // Signup
+    'create_account': 'Create Account',
+    'join_community': 'Join the NeuroLink Kids community',
+    'parent_name': 'Parent name',
+    'full_name': 'Full name',
+    'confirm_password': 'Confirm password',
+    'have_account': 'Already have an account?',
+    'choose_role': 'Choose your role',
+    'role_parent': 'Parent',
+    'role_teacher': 'Teacher',
+    'role_doctor': 'Doctor',
+
+    // Home tabs
+    'tab_home': 'Home',
+    'tab_activities': 'Activities',
+    'tab_progress': 'Progress',
+    'tab_profile': 'Profile',
+    'tab_students': 'Students',
+    'tab_patients': 'Patients',
+    'tab_reports': 'Reports',
+
+    // Parent Home
+    'lets_learn': 'Let\'s learn something new today!',
+    'activities_tab': 'Activities',
+    'reports_tab': 'Reports',
+    'videos_section': 'Videos',
+    'activities_section': 'Activities',
+    'see_all': 'See all  →',
+    'retake_assessment': 'Retake assessment',
+    'total_stars': 'Total stars',
+    'answer_questions': 'Answer the questions',
+
+    // Teacher Home
+    'teacher_greeting': 'Hello, 👋  Teacher',
+    'manage_students': 'Manage your students\' progress',
+    'class_overview': 'Class Overview',
+    'avg_task': 'Avg. Task',
+    'avg_score': 'Avg. Score',
+    'students_label': 'Students',
+    'student_performance': 'Student Performance',
+    'add_report': 'Add Report',
+    'recent_reports': 'Recent Reports',
+
+    // Doctor Home
+    'doctor_greeting': 'Hello, 👋  Doctor',
+    'track_patients': 'Track patient progress and assessments',
+    'patient_profile': 'Patient Profile',
+    'age_label': 'Age',
+    'school_label': 'School',
+    'diagnosis_label': 'Diagnosis',
+    'add_medical_report': 'Add Medical Report',
+    'medical_reports': 'Medical Reports',
+    'recent_medical': 'Recent Medical Reports',
+    'no_medical_reports': 'No medical reports yet',
+
+    // Activities
+    'all_activities': 'All Activities',
+    'activities_subtitle': 'Choose an activity and learn while having fun',
+    'colors_learning': 'Colors Learning',
+    'colors_subtitle': 'Recognize and match colors',
+    'numbers_learning': 'Numbers Learning',
+    'numbers_subtitle': 'Learn counting & numbers',
+    'alphabet_learning': 'Alphabet Learning',
+    'alphabet_subtitle': 'Letters & sounds practice',
+    'animals_learning': 'Animals Learning',
+    'animals_subtitle': 'Animals & their sounds',
+    'family_learning': 'Family Learning',
+    'family_subtitle': 'Family members & relationships',
+    'drawing_activity': 'Drawing Activity',
+    'drawing_subtitle': 'Draw and create',
+    'memory_cards': 'Memory Cards',
+    'memory_subtitle': 'Match pairs & train memory',
+    'sorting_game': 'Sorting Game',
+    'sorting_subtitle': 'Sort & categorize items',
+    'emotions_title': 'Emotions',
+    'emotions_subtitle': 'Feelings',
+    'routine_title': 'Routine',
+    'routine_subtitle': 'Daily plans',
+    'relaxation_title': 'Relaxation',
+    'relaxation_subtitle': 'Calm down',
+    'communication_title': 'Communication',
+    'communication_subtitle': 'Practice speaking',
+
+    // Reports
+    'no_reports': 'No reports yet',
+    'performance_label': 'Performance',
+    'excellent': 'Excellent',
+    'good': 'Good',
+    'average': 'Average',
+    'poor': 'Poor',
+    'behavior_label': 'Behavior',
+    'strange_behavior': 'Strange behavior',
+    'emotion_label': 'Emotion',
+    'notes_label': 'Notes',
+    'learning_activities': 'Learning activities',
+    'focused': 'Focused',
+    'distracted': 'Distracted',
+    'social': 'Social',
+    'isolated': 'Isolated',
+    'hyperactive': 'Hyperactive',
+    'calm': 'Calm',
+    'reading': 'Reading',
+    'writing': 'Writing',
+    'math': 'Math',
+    'drawing': 'Drawing',
+    'group_activity': 'Group activity',
+
+    // Add Report
+    'select_patient': 'Select patient *',
+    'medical_observation': 'Medical observation',
+    'medical_notes': 'Medical notes',
+    'diagnosis_update': 'Diagnosis update',
+    'recommendations': 'Recommendations',
+    'save_medical_report': 'Save medical report',
+
+    // Progress
+    'progress_title': 'Progress',
+    'tracking_progress': 'Tracking progress of',
+    'activities_stat': 'Activities',
+    'videos_stat': 'Videos',
+    'reports_stat': 'Reports',
+    'score_stat': 'Score',
+    'performance_by_cat': 'Performance by category',
+    'clinical_overview': 'Clinical Overview',
+    'patients_stat': 'Patients',
+    'medical_reports_stat': 'Medical Reports',
+    'assessments_stat': 'Assessments',
+    'class_overview_title': 'Class Overview',
+    'students_stat': 'Students',
+    'behavioral_trends': 'Behavioral Trends',
+
+    // Profile
+    'my_children': 'My children',
+    'my_students': 'My students',
+    'my_patients': 'My patients',
+    'add_child': 'Add a child',
+    'preferences': 'Preferences',
+    'logout': 'Log out',
+    'activate': 'Activate',
+    'boy': 'Boy',
+    'girl': 'Girl',
+    'years_old': 'years',
+
+    // Add Child
+    'add_child_title': 'Add a child',
+    'child_name': 'Child name',
+    'child_age': 'Age',
+    'gender': 'Gender',
+    'school_name': 'School name',
+    'diagnosis_type': 'Diagnosis type',
+    'started_school': 'Has your child started school?',
+    'continue_assessment': 'Continue to assessment',
+
+    // Videos
+    'video_social': 'Social skills',
+    'video_calm': 'Calming techniques',
+    'video_learn': 'Learn together',
+    'video_hand_washing': 'Hand Washing Steps',
+    'video_daily_life': 'Daily life',
+    'video_greeting': 'Greeting a Friend',
+    'video_counting': 'Counting to Ten',
+    'video_cognitive': 'Cognitive',
+
+    // ── Game & Activity strings ──
+    // Colors
+    'tap_the_color': 'Tap the Color',
+    'find_right_color': 'Find the right color!',
+    'match_colors': 'Match Colors',
+    'drag_objects_colors': 'Drag objects to colors!',
+    'tap_the': 'Tap the',
+    'color_word': 'color',
+    'match_objects_colors': 'Match the objects to\ntheir colors!',
+    'level': 'Level',
+
+    // Numbers
+    'count_objects': 'Count Objects',
+    'how_many_see': 'How many do you see?',
+    'number_matching': 'Number Matching',
+    'match_numbers_groups': 'Match numbers to groups!',
+    'trace_number': 'Trace Number',
+    'draw_finger': 'Draw with your finger!',
+    'how_many': 'How many?',
+    'trace_the_number': 'Trace the number',
+
+    // Alphabet
+    'letter_tracing': 'Letter Tracing',
+    'find_letter': 'Find the Letter',
+    'word_builder': 'Word Builder',
+    'trace_letter': 'Trace the letter',
+
+    // Animals
+    'guess_sound': 'Guess the Sound',
+    'habitat_matching': 'Habitat Matching',
+    'animal_puzzle': 'Animal Puzzle',
+    'all_animals': 'All Animals',
+    'sound_label': 'Sound:',
+    'habitat_label': 'Habitat:',
+
+    // Family
+    'match_family': 'Match Family Member',
+    'family_order': 'Family Order',
+    'family_quiz': 'Family Quiz',
+    'relation_label': 'Relation:',
+    'tap_order_oldest': 'Tap them in order from oldest to youngest',
+
+    // Memory
+    'easy': 'Easy',
+    'medium': 'Medium',
+    'hard': 'Hard',
+    'moves': 'Moves',
+    'matches': 'Matches',
+    'time': 'Time',
+
+    // Sorting
+    'sort_by_colors': 'Sort by Colors',
+    'drag_color_buckets': 'Drag items to color buckets',
+    'food_vs_animals': 'Food vs Animals',
+    'sort_food_animals': 'Sort food and animals',
+    'sort_shapes': 'Sort Shapes',
+    'match_shapes_bins': 'Match shapes to bins',
+    'drag_correct_bucket': 'Drag each item to the correct bucket',
+
+    // Emotions
+    'how_feel_today': 'How do you feel today?',
+    'match_emotion': 'Match the Emotion',
+    'scenario_emotion': 'Scenario Emotion',
+    'emotion_intensity': 'Emotion Intensity',
+    'all_emotions': 'All Emotions',
+
+    // Routine
+    'morning_routine': 'Morning Routine',
+    'bedtime_routine': 'Bedtime Routine',
+    'school_routine': 'School Routine',
+
+    // Relaxation
+    'breathing': 'Breathing',
+    'body_scan': 'Body Scan',
+    'calm_sounds': 'Calm Sounds',
+
+    // Communication
+    'greetings': 'Greetings',
+    'asking_help': 'Asking for Help',
+    'sharing_feelings': 'Sharing Feelings',
+
+    // Game sub-screens
+    'which_animal_sound': 'Which animal makes this sound?',
+    'where_animal_live': 'Where does this animal live?',
+    'spell_animal_name': 'Spell the animal name',
+    'reset': 'Reset',
+    'clear': 'Clear',
+    'done_excl': 'Done!',
+    'family_members': 'Family Members',
+    'who_is_the': 'Who is the',
+    'find_the_emotion': 'Find the emotion:',
+    'how_would_you_feel': 'How would you feel?',
+    'pick_emotion': 'Pick an emotion',
+    'save_feeling': 'Save my feeling',
+    'you_won_play_again': 'You won! Play again',
+    'stamps': 'Stamps',
+    'colors_label': 'Colors',
+    'brush_size': 'Brush Size',
+
+    // Game common
+    'activities_label': 'Activities',
+    'great_job': 'Great Job! ⭐',
+    'well_done': 'Well done!',
+    'try_again': 'Try again',
+    'next': 'Next',
+    'replay': 'Replay',
+    'score': 'Score',
+    'correct': 'Correct!',
+    'streak': 'Streak',
+    'play_again': 'Play Again',
+
+    // Screens & forms
+    'choose_patient': 'Choose a patient...',
+    'date_label': 'Date',
+    'time_label': 'Time',
+    'report_saved': 'Report saved',
+    'medical_report_saved': 'Medical report saved',
+    'back_to_dashboard': 'Back to dashboard',
+    'my_stars': 'My stars',
+    'you_progress_well': 'You are making great progress!',
+    'add_a_report': 'Add a report',
+    'evaluation_test': 'Evaluation test',
+    'response_mode': 'Response mode:',
+    'settings_coming': 'Settings coming soon.',
+    'contact_email': 'contact@neurolink-kids.example',
+    'add_a_child': 'Add a child',
+  };
+
+  // ── French ──────────────────────────────────────────────
   static const _fr = <String, String>{
     // General
     'app_name': 'NeuroLink Kids',
@@ -198,8 +526,149 @@ class S {
     'video_social': 'Compétences sociales',
     'video_calm': 'Techniques de calme',
     'video_learn': 'Apprendre ensemble',
+    'video_hand_washing': 'Se laver les mains',
+    'video_daily_life': 'Vie quotidienne',
+    'video_greeting': 'Saluer un ami',
+    'video_counting': 'Compter jusqu\'à dix',
+    'video_cognitive': 'Cognitif',
+
+    // ── Game & Activity strings ──
+    'tap_the_color': 'Touche la couleur',
+    'find_right_color': 'Trouve la bonne couleur !',
+    'match_colors': 'Associer les couleurs',
+    'drag_objects_colors': 'Glisse les objets vers les couleurs !',
+    'tap_the': 'Touche le',
+    'color_word': 'couleur',
+    'match_objects_colors': 'Associe les objets à\nleurs couleurs !',
+    'level': 'Niveau',
+
+    'count_objects': 'Compter les objets',
+    'how_many_see': 'Combien en vois-tu ?',
+    'number_matching': 'Associer les nombres',
+    'match_numbers_groups': 'Associe les nombres aux groupes !',
+    'trace_number': 'Tracer le nombre',
+    'draw_finger': 'Dessine avec ton doigt !',
+    'how_many': 'Combien ?',
+    'trace_the_number': 'Trace le nombre',
+
+    'letter_tracing': 'Tracer la lettre',
+    'find_letter': 'Trouve la lettre',
+    'word_builder': 'Construire un mot',
+    'trace_letter': 'Trace la lettre',
+
+    'guess_sound': 'Devine le son',
+    'habitat_matching': 'Associer l\'habitat',
+    'animal_puzzle': 'Puzzle d\'animaux',
+    'all_animals': 'Tous les animaux',
+    'sound_label': 'Son :',
+    'habitat_label': 'Habitat :',
+
+    'match_family': 'Associer le membre',
+    'family_order': 'Ordre familial',
+    'family_quiz': 'Quiz familial',
+    'relation_label': 'Relation :',
+    'tap_order_oldest': 'Touche-les du plus âgé au plus jeune',
+
+    'easy': 'Facile',
+    'medium': 'Moyen',
+    'hard': 'Difficile',
+    'moves': 'Coups',
+    'matches': 'Paires',
+    'time': 'Temps',
+
+    'sort_by_colors': 'Trier par couleurs',
+    'drag_color_buckets': 'Glisse les objets vers les couleurs',
+    'food_vs_animals': 'Nourriture vs Animaux',
+    'sort_food_animals': 'Trie la nourriture et les animaux',
+    'sort_shapes': 'Trier les formes',
+    'match_shapes_bins': 'Associe les formes aux bacs',
+    'drag_correct_bucket': 'Glisse chaque objet dans le bon bac',
+
+    'how_feel_today': 'Comment te sens-tu aujourd\'hui ?',
+    'match_emotion': 'Associer l\'émotion',
+    'scenario_emotion': 'Scénario émotionnel',
+    'emotion_intensity': 'Intensité émotionnelle',
+    'all_emotions': 'Toutes les émotions',
+
+    'morning_routine': 'Routine du matin',
+    'bedtime_routine': 'Routine du coucher',
+    'school_routine': 'Routine scolaire',
+
+    'breathing': 'Respiration',
+    'body_scan': 'Scan corporel',
+    'calm_sounds': 'Sons apaisants',
+
+    'greetings': 'Salutations',
+    'asking_help': 'Demander de l\'aide',
+    'sharing_feelings': 'Partager ses sentiments',
+
+    'activities_label': 'Activités',
+    'great_job': 'Bravo ! ⭐',
+    'well_done': 'Bien joué !',
+    'try_again': 'Réessaie',
+    'next': 'Suivant',
+    'replay': 'Rejouer',
+    'score': 'Score',
+    'correct': 'Correct !',
+    'streak': 'Série',
+    'play_again': 'Rejouer',
+
+    'letter_sound_game': 'Jeu de sons des lettres',
+    'all_letters': 'Toutes les lettres',
+
+    'emotion_happy': 'Joyeux',
+    'emotion_sad': 'Triste',
+    'emotion_angry': 'En colère',
+    'emotion_scared': 'Effrayé',
+    'emotion_excited': 'Excité',
+    'emotion_calm': 'Calme',
+
+    'tap_to_speak': 'Touche pour parler',
+    'build_sentence': 'Construire une phrase',
+
+    'breathing_exercise': 'Exercice de respiration',
+    'pop_bubbles': 'Éclate les bulles',
+    'color_mandala': 'Colorier le mandala',
+    'calming_jar': 'Bocal apaisant',
+
+    'free_draw': 'Dessin libre',
+    'color_by_number': 'Coloriage par numéros',
+    'drawing_tools': 'Outils de dessin',
+
+    'which_animal_sound': 'Quel animal fait ce son ?',
+    'where_animal_live': 'Où vit cet animal ?',
+    'spell_animal_name': 'Épelle le nom de l\'animal',
+    'reset': 'Réinitialiser',
+    'clear': 'Effacer',
+    'done_excl': 'Terminé !',
+    'family_members': 'Membres de la famille',
+    'who_is_the': 'Qui est le/la',
+    'find_the_emotion': 'Trouve l\'émotion :',
+    'how_would_you_feel': 'Comment te sentirais-tu ?',
+    'pick_emotion': 'Choisis une émotion',
+    'save_feeling': 'Enregistrer mon ressenti',
+    'you_won_play_again': 'Tu as gagné ! Rejouer',
+    'stamps': 'Tampons',
+    'colors_label': 'Couleurs',
+    'brush_size': 'Taille du pinceau',
+
+    'choose_patient': 'Choisir un patient...',
+    'date_label': 'Date',
+    'time_label': 'Heure',
+    'report_saved': 'Rapport enregistré',
+    'medical_report_saved': 'Rapport médical enregistré',
+    'back_to_dashboard': 'Retour au tableau de bord',
+    'my_stars': 'Mes étoiles',
+    'you_progress_well': 'Tu progresses bien !',
+    'add_a_report': 'Ajouter un rapport',
+    'evaluation_test': 'Test d\'évaluation',
+    'response_mode': 'Mode de réponse :',
+    'settings_coming': 'Paramètres à venir.',
+    'contact_email': 'contact@neurolink-kids.example',
+    'add_a_child': 'Ajouter un enfant',
   };
 
+  // ── Arabic ──────────────────────────────────────────────
   static const _ar = <String, String>{
     // General
     'app_name': 'نيورولينك كيدز',
@@ -388,5 +857,145 @@ class S {
     'video_social': 'مهارات اجتماعية',
     'video_calm': 'تقنيات الهدوء',
     'video_learn': 'تعلم معاً',
+    'video_hand_washing': 'خطوات غسل اليدين',
+    'video_daily_life': 'الحياة اليومية',
+    'video_greeting': 'تحية صديق',
+    'video_counting': 'العد حتى عشرة',
+    'video_cognitive': 'إدراكي',
+
+    // ── Game & Activity strings ──
+    'tap_the_color': 'اضغط على اللون',
+    'find_right_color': 'اعثر على اللون الصحيح!',
+    'match_colors': 'طابق الألوان',
+    'drag_objects_colors': 'اسحب الأشياء إلى الألوان!',
+    'tap_the': 'اضغط على',
+    'color_word': 'اللون',
+    'match_objects_colors': 'طابق الأشياء مع\nألوانها!',
+    'level': 'المستوى',
+
+    'count_objects': 'عد الأشياء',
+    'how_many_see': 'كم تراها؟',
+    'number_matching': 'مطابقة الأرقام',
+    'match_numbers_groups': 'طابق الأرقام بالمجموعات!',
+    'trace_number': 'ارسم الرقم',
+    'draw_finger': 'ارسم بإصبعك!',
+    'how_many': 'كم؟',
+    'trace_the_number': 'ارسم الرقم',
+
+    'letter_tracing': 'رسم الحرف',
+    'find_letter': 'اعثر على الحرف',
+    'word_builder': 'بناء كلمة',
+    'trace_letter': 'ارسم الحرف',
+
+    'guess_sound': 'خمّن الصوت',
+    'habitat_matching': 'مطابقة الموطن',
+    'animal_puzzle': 'لغز الحيوانات',
+    'all_animals': 'جميع الحيوانات',
+    'sound_label': 'الصوت:',
+    'habitat_label': 'الموطن:',
+
+    'match_family': 'طابق فرد العائلة',
+    'family_order': 'ترتيب العائلة',
+    'family_quiz': 'اختبار العائلة',
+    'relation_label': 'العلاقة:',
+    'tap_order_oldest': 'اضغط عليهم من الأكبر إلى الأصغر',
+
+    'easy': 'سهل',
+    'medium': 'متوسط',
+    'hard': 'صعب',
+    'moves': 'حركات',
+    'matches': 'تطابقات',
+    'time': 'الوقت',
+
+    'sort_by_colors': 'ترتيب حسب الألوان',
+    'drag_color_buckets': 'اسحب العناصر إلى دلاء الألوان',
+    'food_vs_animals': 'طعام مقابل حيوانات',
+    'sort_food_animals': 'رتّب الطعام والحيوانات',
+    'sort_shapes': 'ترتيب الأشكال',
+    'match_shapes_bins': 'طابق الأشكال بالصناديق',
+    'drag_correct_bucket': 'اسحب كل عنصر إلى الدلو الصحيح',
+
+    'how_feel_today': 'كيف تشعر اليوم؟',
+    'match_emotion': 'طابق المشاعر',
+    'scenario_emotion': 'سيناريو عاطفي',
+    'emotion_intensity': 'شدة المشاعر',
+    'all_emotions': 'جميع المشاعر',
+
+    'morning_routine': 'روتين الصباح',
+    'bedtime_routine': 'روتين النوم',
+    'school_routine': 'روتين المدرسة',
+
+    'breathing': 'التنفس',
+    'body_scan': 'مسح الجسم',
+    'calm_sounds': 'أصوات مهدئة',
+
+    'greetings': 'التحيات',
+    'asking_help': 'طلب المساعدة',
+    'sharing_feelings': 'مشاركة المشاعر',
+
+    'activities_label': 'الأنشطة',
+    'great_job': 'أحسنت! ⭐',
+    'well_done': 'أحسنت!',
+    'try_again': 'حاول مرة أخرى',
+    'next': 'التالي',
+    'replay': 'إعادة',
+    'score': 'النتيجة',
+    'correct': 'صحيح!',
+    'streak': 'سلسلة',
+    'play_again': 'العب مرة أخرى',
+
+    'letter_sound_game': 'لعبة أصوات الحروف',
+    'all_letters': 'جميع الحروف',
+
+    'emotion_happy': 'سعيد',
+    'emotion_sad': 'حزين',
+    'emotion_angry': 'غاضب',
+    'emotion_scared': 'خائف',
+    'emotion_excited': 'متحمس',
+    'emotion_calm': 'هادئ',
+
+    'tap_to_speak': 'اضغط للتحدث',
+    'build_sentence': 'بناء جملة',
+
+    'breathing_exercise': 'تمرين التنفس',
+    'pop_bubbles': 'فرقع الفقاعات',
+    'color_mandala': 'لون الماندالا',
+    'calming_jar': 'جرة الهدوء',
+
+    'free_draw': 'رسم حر',
+    'color_by_number': 'تلوين بالأرقام',
+    'drawing_tools': 'أدوات الرسم',
+
+    'which_animal_sound': 'أي حيوان يصدر هذا الصوت؟',
+    'where_animal_live': 'أين يعيش هذا الحيوان؟',
+    'spell_animal_name': 'تهجئة اسم الحيوان',
+    'reset': 'إعادة تعيين',
+    'clear': 'مسح',
+    'done_excl': 'تم!',
+    'family_members': 'أفراد العائلة',
+    'who_is_the': 'من هو/هي',
+    'find_the_emotion': 'اعثر على الشعور:',
+    'how_would_you_feel': 'كيف ستشعر؟',
+    'pick_emotion': 'اختر شعوراً',
+    'save_feeling': 'حفظ شعوري',
+    'you_won_play_again': 'فزت! العب مرة أخرى',
+    'stamps': 'طوابع',
+    'colors_label': 'ألوان',
+    'brush_size': 'حجم الفرشاة',
+
+    'choose_patient': 'اختر مريضاً...',
+    'date_label': 'التاريخ',
+    'time_label': 'الوقت',
+    'report_saved': 'تم حفظ التقرير',
+    'medical_report_saved': 'تم حفظ التقرير الطبي',
+    'back_to_dashboard': 'العودة إلى لوحة التحكم',
+    'my_stars': 'نجومي',
+    'you_progress_well': 'أنت تتقدم بشكل رائع!',
+    'add_a_report': 'إضافة تقرير',
+    'evaluation_test': 'اختبار التقييم',
+    'response_mode': 'طريقة الإجابة:',
+    'settings_coming': 'الإعدادات قريباً.',
+    'contact_email': 'contact@neurolink-kids.example',
+    'add_a_child': 'إضافة طفل',
   };
 }

@@ -275,7 +275,7 @@ class _StudentCard extends StatelessWidget {
                   color: AppColors.accentGreen.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Text('Level 2',
+                child: Text('${S.get('level')} 2',
                     style: TextStyle(
                         color: AppColors.accentGreen,
                         fontWeight: FontWeight.w800,

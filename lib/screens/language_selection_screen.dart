@@ -49,6 +49,16 @@ class LanguageSelectionScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 32),
                 _LanguageCard(
+                  label: 'English',
+                  flag: '🇬🇧',
+                  selected: state.language == AppLanguage.en,
+                  onTap: () {
+                    state.setLanguage(AppLanguage.en);
+                    S.setLanguage(AppLanguage.en);
+                  },
+                ),
+                const SizedBox(height: 14),
+                _LanguageCard(
                   label: 'Français',
                   flag: '🇫🇷',
                   selected: state.language == AppLanguage.fr,
@@ -69,9 +79,7 @@ class LanguageSelectionScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 PrimaryButton(
-                  label: state.language == AppLanguage.ar
-                      ? 'متابعة'
-                      : 'Continuer',
+                  label: S.get('continue_btn'),
                   icon: Icons.arrow_forward,
                   gradient: AppColors.orangeGradient,
                   onPressed: () {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../state/app_state.dart';
+import '../../data/strings.dart';
 import '../../widgets/activity_kit.dart';
 
 class _Step {
@@ -72,7 +73,7 @@ class _RoutineScreenState extends State<RoutineScreen> {
     final r = _routines[_index];
     final done = _checked[_index]!.length;
     return ActivityShell(
-      title: 'Routine',
+      title: S.get('routine_title'),
       titleColor: const Color(0xFF60A5FA),
       backgroundColors: const [Color(0xFFE0F2FE), Color(0xFFEDE9FE)],
       child: ListView(

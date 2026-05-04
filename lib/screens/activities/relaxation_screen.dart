@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../../data/strings.dart';
 import '../../widgets/activity_kit.dart';
 
 class RelaxationScreen extends StatelessWidget {
@@ -10,14 +11,14 @@ class RelaxationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Relaxation',
+      title: S.get('relaxation_title'),
       titleColor: const Color(0xFF14B8A6),
       backgroundColors: const [Color(0xFFE7FBE7), Color(0xFFE0F2FE)],
       child: ListView(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
         children: [
           GameModeListTile(
-            title: 'Breathing Exercise',
+            title: S.get('breathing_exercise'),
             icon: Icons.air_rounded,
             gradient: const LinearGradient(colors: [
               Color(0xFF60A5FA),
@@ -29,7 +30,7 @@ class RelaxationScreen extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           GameModeListTile(
-            title: 'Pop the Bubbles',
+            title: S.get('pop_bubbles'),
             icon: Icons.bubble_chart_rounded,
             gradient: const LinearGradient(colors: [
               Color(0xFFEC4899),
@@ -91,7 +92,7 @@ class _BreathingScreenState extends State<_BreathingScreen>
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Relaxation',
+      title: S.get('relaxation_title'),
       backgroundColors: const [Color(0xFFE0F2FE), Color(0xFFE7FBE7)],
       child: AnimatedBuilder(
         animation: _c,
@@ -181,7 +182,7 @@ class _BubbleScreenState extends State<_BubbleScreen> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Relaxation',
+      title: S.get('relaxation_title'),
       backgroundColors: const [Color(0xFFEAF2FF), Color(0xFFFCE7F3)],
       child: Stack(children: [
         for (final b in _bubbles)
@@ -262,7 +263,7 @@ class _NatureSoundsScreenState extends State<_NatureSoundsScreen> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Relaxation',
+      title: S.get('relaxation_title'),
       backgroundColors: const [Color(0xFFE7FBE7), Color(0xFFE0F2FE)],
       child: ListView(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
@@ -364,7 +365,7 @@ class _ColorFlowScreenState extends State<_ColorFlowScreen>
       animation: _c,
       builder: (_, __) {
         return ActivityShell(
-          title: 'Relaxation',
+          title: S.get('relaxation_title'),
           backgroundColors: [
             _hue(_c.value),
             _hue(_c.value + 0.5),

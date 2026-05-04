@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../data/strings.dart';
 import '../../state/app_state.dart';
 import '../../widgets/activity_kit.dart';
 
@@ -9,15 +10,15 @@ class SortingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Sorting Game',
+      title: S.get('sorting_game'),
       titleColor: const Color(0xFF14B8A6),
       backgroundColors: const [Color(0xFFE7FBE7), Color(0xFFE0F2FE)],
       child: ListView(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
         children: [
           GameModeCard(
-            title: 'Sort by Colors',
-            subtitle: 'Drag items to color buckets',
+            title: S.get('sort_by_colors'),
+            subtitle: S.get('drag_color_buckets'),
             icon: const Text('🎨', style: TextStyle(fontSize: 32)),
             gradient: const LinearGradient(colors: [
               Color(0xFFEC4899),
@@ -29,8 +30,8 @@ class SortingScreen extends StatelessWidget {
           ),
           const SizedBox(height: 14),
           GameModeCard(
-            title: 'Food vs Animals',
-            subtitle: 'Sort food and animals',
+            title: S.get('food_vs_animals'),
+            subtitle: S.get('sort_food_animals'),
             icon: const Text('🍎', style: TextStyle(fontSize: 32)),
             gradient: const LinearGradient(colors: [
               Color(0xFFFBBF24),
@@ -42,8 +43,8 @@ class SortingScreen extends StatelessWidget {
           ),
           const SizedBox(height: 14),
           GameModeCard(
-            title: 'Sort Shapes',
-            subtitle: 'Match shapes to bins',
+            title: S.get('sort_shapes'),
+            subtitle: S.get('match_shapes_bins'),
             icon: const Text('▲', style: TextStyle(fontSize: 32)),
             gradient: const LinearGradient(colors: [
               Color(0xFF60A5FA),
@@ -112,7 +113,7 @@ class _SortGameBaseState extends State<_SortGameBase> {
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
           child: Column(
             children: [
-              const Text('Drag each item to the correct bucket',
+              Text(S.get('drag_correct_bucket'),
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Color(0xFF6B7280))),
               const SizedBox(height: 12),
@@ -268,7 +269,7 @@ class _SortByColorGame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _SortGameBase(
-      title: 'Sorting Game',
+      title: S.get('sorting_game'),
       items: [
         _Item('a', '🍎', 'red'),
         _Item('b', '🍓', 'red'),
@@ -292,7 +293,7 @@ class _FoodAnimalsGame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _SortGameBase(
-      title: 'Sorting Game',
+      title: S.get('sorting_game'),
       items: [
         _Item('a', '🍎', 'food'),
         _Item('b', '🍕', 'food'),
@@ -315,7 +316,7 @@ class _ShapesSortGame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _SortGameBase(
-      title: 'Sorting Game',
+      title: S.get('sorting_game'),
       items: [
         _Item('a', '⭕', 'circle'),
         _Item('b', '🔵', 'circle'),

@@ -1,3 +1,4 @@
+import '../data/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -38,7 +39,7 @@ class _AddMedicalReportScreenState extends State<AddMedicalReportScreen> {
       backgroundColor: const Color(0xFFEFF6FF),
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text('Add Medical Report'),
+        title: Text(S.get('add_medical_report')),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -57,7 +58,7 @@ class _AddMedicalReportScreenState extends State<AddMedicalReportScreen> {
                 child: DropdownButton<int>(
                   value: _patient,
                   isExpanded: true,
-                  hint: const Text('Choose a patient...'),
+                  hint: Text(S.get('choose_patient')),
                   items: [
                     for (int i = 0; i < state.children.length; i++)
                       DropdownMenuItem(
@@ -79,10 +80,10 @@ class _AddMedicalReportScreenState extends State<AddMedicalReportScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Date: ${DateFormat('dd/MM/y').format(now)}',
+                  Text('${S.get("date_label")}: ${DateFormat('dd/MM/y').format(now)}',
                       style: const TextStyle(fontWeight: FontWeight.w800)),
                   const SizedBox(height: 4),
-                  Text('Time: ${DateFormat('HH:mm:ss').format(now)}',
+                  Text('${S.get("time_label")}: ${DateFormat('HH:mm:ss').format(now)}',
                       style: const TextStyle(fontWeight: FontWeight.w800)),
                 ],
               ),
@@ -97,7 +98,7 @@ class _AddMedicalReportScreenState extends State<AddMedicalReportScreen> {
               ),
             ),
             const SizedBox(height: 18),
-            const _Label('Medical Notes'),
+            _Label(S.get('medical_notes')),
             TextField(
               controller: _notes,
               maxLines: 4,
@@ -106,7 +107,7 @@ class _AddMedicalReportScreenState extends State<AddMedicalReportScreen> {
               ),
             ),
             const SizedBox(height: 18),
-            const _Label('Diagnosis Update'),
+            _Label(S.get('diagnosis_update')),
             TextField(
               controller: _diagnosis,
               maxLines: 3,
@@ -115,7 +116,7 @@ class _AddMedicalReportScreenState extends State<AddMedicalReportScreen> {
               ),
             ),
             const SizedBox(height: 18),
-            const _Label('Recommendations'),
+            _Label(S.get('recommendations')),
             TextField(
               controller: _recommendations,
               maxLines: 4,
@@ -139,7 +140,7 @@ class _AddMedicalReportScreenState extends State<AddMedicalReportScreen> {
                   recommendations: _recommendations.text,
                 ));
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Rapport médical enregistré')),
+                  SnackBar(content: Text(S.get('medical_report_saved'))),
                 );
                 Navigator.of(context).pop();
               },

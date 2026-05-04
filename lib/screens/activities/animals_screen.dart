@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../../state/app_state.dart';
+import '../../data/strings.dart';
 import '../../widgets/activity_kit.dart';
 
 class _Animal {
@@ -37,7 +38,7 @@ class _AnimalsScreenState extends State<AnimalsScreen> {
   Widget build(BuildContext context) {
     final a = _animals[_index];
     return ActivityShell(
-      title: 'Animals Learning',
+      title: S.get('animals_learning'),
       titleColor: const Color(0xFF1F2937),
       backgroundColors: const [Color(0xFFFFF8EC), Color(0xFFEEF2FF)],
       child: ListView(
@@ -71,9 +72,9 @@ class _AnimalsScreenState extends State<AnimalsScreen> {
                   style: const TextStyle(color: Colors.white),
                 ),
                 const SizedBox(height: 14),
-                _InfoChip(label: 'Sound:', value: a.sound),
+                _InfoChip(label: S.get('sound_label'), value: a.sound),
                 const SizedBox(height: 8),
-                _InfoChip(label: 'Habitat:', value: a.habitat),
+                _InfoChip(label: S.get('habitat_label'), value: a.habitat),
                 const SizedBox(height: 12),
                 Container(
                   width: 56,
@@ -89,9 +90,9 @@ class _AnimalsScreenState extends State<AnimalsScreen> {
             ),
           ),
           const SizedBox(height: 18),
-          const Text(
-            'Activities',
-            style: TextStyle(
+          Text(
+            S.get('activities_label'),
+            style: const TextStyle(
               fontWeight: FontWeight.w900,
               fontSize: 16,
               color: Color(0xFF1F2937),
@@ -99,7 +100,7 @@ class _AnimalsScreenState extends State<AnimalsScreen> {
           ),
           const SizedBox(height: 10),
           GameModeListTile(
-            title: 'Guess the Sound',
+            title: S.get('guess_sound'),
             icon: Icons.music_note_rounded,
             gradient: const LinearGradient(colors: [
               Color(0xFFFB7185),
@@ -111,7 +112,7 @@ class _AnimalsScreenState extends State<AnimalsScreen> {
           ),
           const SizedBox(height: 10),
           GameModeListTile(
-            title: 'Habitat Matching',
+            title: S.get('habitat_matching'),
             icon: Icons.map_rounded,
             gradient: const LinearGradient(colors: [
               Color(0xFF60A5FA),
@@ -123,7 +124,7 @@ class _AnimalsScreenState extends State<AnimalsScreen> {
           ),
           const SizedBox(height: 10),
           GameModeListTile(
-            title: 'Animal Puzzle',
+            title: S.get('animal_puzzle'),
             icon: Icons.extension_rounded,
             gradient: const LinearGradient(colors: [
               Color(0xFFFBBF24),
@@ -134,9 +135,9 @@ class _AnimalsScreenState extends State<AnimalsScreen> {
             )),
           ),
           const SizedBox(height: 18),
-          const Text(
-            'All Animals',
-            style: TextStyle(
+          Text(
+            S.get('all_animals'),
+            style: const TextStyle(
               fontWeight: FontWeight.w900,
               fontSize: 16,
               color: Color(0xFF1F2937),
@@ -253,14 +254,14 @@ class _GuessSoundGameState extends State<_GuessSoundGame> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Animals Learning',
+      title: S.get('animals_learning'),
       backgroundColors: const [Color(0xFFFFF8EC), Color(0xFFEEF2FF)],
       child: Stack(children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
           child: Column(
             children: [
-              const Text('Which animal makes this sound?',
+              Text(S.get('which_animal_sound'),
                   style: TextStyle(color: Color(0xFF6B7280))),
               const SizedBox(height: 12),
               Container(
@@ -374,14 +375,14 @@ class _HabitatMatchingGameState extends State<_HabitatMatchingGame> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Animals Learning',
+      title: S.get('animals_learning'),
       backgroundColors: const [Color(0xFFFFF8EC), Color(0xFFEEF2FF)],
       child: Stack(children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
           child: Column(
             children: [
-              const Text('Where does this animal live?',
+              Text(S.get('where_animal_live'),
                   style: TextStyle(color: Color(0xFF6B7280))),
               Text(_target.emoji, style: const TextStyle(fontSize: 110)),
               Text(_target.name,
@@ -467,14 +468,14 @@ class _AnimalPuzzleGameState extends State<_AnimalPuzzleGame> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Animals Learning',
+      title: S.get('animals_learning'),
       backgroundColors: const [Color(0xFFFFF8EC), Color(0xFFEEF2FF)],
       child: Stack(children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
           child: Column(
             children: [
-              const Text('Spell the animal name',
+              Text(S.get('spell_animal_name'),
                   style: TextStyle(color: Color(0xFF6B7280))),
               Text(_target.emoji, style: const TextStyle(fontSize: 100)),
               const SizedBox(height: 12),
@@ -568,7 +569,7 @@ class _AnimalPuzzleGameState extends State<_AnimalPuzzleGame> {
                   _arranged.clear();
                   _shuffled = _target.name.split('')..shuffle(_rng);
                 }),
-                child: const Text('Reset'),
+                child: Text(S.get('reset')),
               ),
             ],
           ),

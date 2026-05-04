@@ -1,3 +1,4 @@
+import '../data/strings.dart';
 import 'package:flutter/material.dart';
 
 import '../app_theme.dart';
@@ -180,7 +181,7 @@ class AssessmentResultsScreen extends StatelessWidget {
                     (_) => false,
                   );
                 },
-                child: const Text('Retour au tableau de bord'),
+                child: Text(S.get('back_to_dashboard')),
               ),
             ),
           ],

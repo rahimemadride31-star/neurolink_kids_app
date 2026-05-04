@@ -491,19 +491,19 @@ class _StarsTotalCard extends StatelessWidget {
                 color: Colors.white, size: 26),
           ),
           const SizedBox(width: 12),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Mes étoiles',
-                    style: TextStyle(
+                Text(S.get('my_stars'),
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
                     )),
-                SizedBox(height: 2),
-                Text('Tu progresses bien !',
-                    style: TextStyle(color: Colors.white, fontSize: 11)),
+                const SizedBox(height: 2),
+                Text(S.get('you_progress_well'),
+                    style: const TextStyle(color: Colors.white, fontSize: 11)),
               ],
             ),
           ),
@@ -600,8 +600,8 @@ class _FooterTiles extends StatelessWidget {
             colors: [Color(0xFF60A5FA), Color(0xFF818CF8)],
           ),
           onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('contact@neurolink-kids.example'),
+            SnackBar(
+              content: Text(S.get('contact_email')),
             ),
           ),
         ),
@@ -627,8 +627,8 @@ class _FooterTiles extends StatelessWidget {
             colors: [Color(0xFFEC4899), Color(0xFFA855F7)],
           ),
           onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Paramètres à venir.'),
+            SnackBar(
+              content: Text(S.get('settings_coming')),
             ),
           ),
         ),
@@ -694,14 +694,14 @@ class _AddReportButton extends StatelessWidget {
           gradient: AppColors.orangeGradient,
           borderRadius: BorderRadius.circular(28),
         ),
-        child: const Center(
+        child: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.add, color: Colors.white),
-              SizedBox(width: 6),
-              Text('Ajouter un rapport',
-                  style: TextStyle(
+              const Icon(Icons.add, color: Colors.white),
+              const SizedBox(width: 6),
+              Text(S.get('add_a_report'),
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.w800)),

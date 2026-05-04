@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../data/strings.dart';
 import '../../state/app_state.dart';
 import '../../widgets/activity_kit.dart';
 
@@ -102,7 +103,7 @@ class _MemoryScreenState extends State<MemoryScreen> {
   Widget build(BuildContext context) {
     final cols = _grid <= 4 ? 2 : (_grid <= 9 ? 3 : 4);
     return ActivityShell(
-      title: 'Memory Cards',
+      title: S.get('memory_cards'),
       titleColor: const Color(0xFF7C3AED),
       backgroundColors: const [Color(0xFFF5E9FF), Color(0xFFEAF2FF)],
       child: ListView(
@@ -111,9 +112,9 @@ class _MemoryScreenState extends State<MemoryScreen> {
           Row(
             children: [
               for (final s in [
-                ('Easy', 4),
-                ('Medium', 8),
-                ('Hard', 16),
+                (S.get('easy'), 4),
+                (S.get('medium'), 8),
+                (S.get('hard'), 16),
               ]) ...[
                 Expanded(
                   child: GestureDetector(
@@ -185,9 +186,9 @@ class _MemoryScreenState extends State<MemoryScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _StatChip(label: 'Matches', value: '$_matches'),
-              _StatChip(label: 'Moves', value: '$_moves'),
-              _StatChip(label: 'Time', value: '${_seconds}s'),
+              _StatChip(label: S.get('matches'), value: '$_matches'),
+              _StatChip(label: S.get('moves'), value: '$_moves'),
+              _StatChip(label: S.get('time'), value: '${_seconds}s'),
             ],
           ),
           const SizedBox(height: 16),
@@ -249,7 +250,7 @@ class _MemoryScreenState extends State<MemoryScreen> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 32, vertical: 14),
                 ),
-                child: const Text('You won! Play again',
+                child: Text(S.get('you_won_play_again'),
                     style: TextStyle(fontWeight: FontWeight.w900)),
               ),
             ),

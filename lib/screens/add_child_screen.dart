@@ -1,3 +1,4 @@
+import '../data/strings.dart';
 import 'package:flutter/material.dart';
 
 import '../app_theme.dart';
@@ -42,7 +43,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ajouter un enfant'),
+        title: Text(S.get('add_a_child')),
       ),
       body: KidsBackground(
         overlayOpacity: 0.60,

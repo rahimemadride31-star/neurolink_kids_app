@@ -1,3 +1,4 @@
+import '../data/strings.dart';
 import 'package:flutter/material.dart';
 
 import '../app_theme.dart';
@@ -281,7 +282,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    const Text('Mode de réponse :',
+                    Text(S.get('response_mode'),
                         style: TextStyle(color: AppColors.textMuted)),
                     const SizedBox(height: 6),
                     Row(

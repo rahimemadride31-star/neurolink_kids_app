@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../../state/app_state.dart';
+import '../../data/strings.dart';
 import '../../widgets/activity_kit.dart';
 
 class _Emotion {
@@ -27,12 +28,12 @@ class EmotionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Émotions',
+      title: S.get('emotions_title'),
       child: ListView(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
         children: [
           GameModeListTile(
-            title: 'How do you feel today?',
+            title: S.get('how_feel_today'),
             icon: Icons.mood_rounded,
             gradient: const LinearGradient(colors: [
               Color(0xFFEC4899),
@@ -44,7 +45,7 @@ class EmotionsScreen extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           GameModeListTile(
-            title: 'Match the Emotion',
+            title: S.get('match_emotion'),
             icon: Icons.face_rounded,
             gradient: const LinearGradient(colors: [
               Color(0xFFFB7185),
@@ -56,7 +57,7 @@ class EmotionsScreen extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           GameModeListTile(
-            title: 'Scenario Emotion',
+            title: S.get('scenario_emotion'),
             icon: Icons.menu_book_rounded,
             gradient: const LinearGradient(colors: [
               Color(0xFFFBBF24),
@@ -68,7 +69,7 @@ class EmotionsScreen extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           GameModeListTile(
-            title: 'Emotion Intensity',
+            title: S.get('emotion_intensity'),
             icon: Icons.speed_rounded,
             gradient: const LinearGradient(colors: [
               Color(0xFF60A5FA),
@@ -79,8 +80,8 @@ class EmotionsScreen extends StatelessWidget {
             )),
           ),
           const SizedBox(height: 18),
-          const Text('All Emotions',
-              style: TextStyle(
+          Text(S.get('all_emotions'),
+              style: const TextStyle(
                 fontWeight: FontWeight.w900,
                 color: Color(0xFF1F2937),
               )),
@@ -137,14 +138,14 @@ class _MoodGameState extends State<_MoodGame> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Émotions',
+      title: S.get('emotions_title'),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
         child: Column(
           children: [
-            const Text(
-              'How do you feel today?',
-              style: TextStyle(
+            Text(
+              S.get('how_feel_today'),
+              style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w900,
                 color: Color(0xFF1F2937),
@@ -250,13 +251,13 @@ class _MatchEmotionGameState extends State<_MatchEmotionGame> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Émotions',
+      title: S.get('emotions_title'),
       child: Stack(children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
           child: Column(
             children: [
-              const Text('Find the emotion:',
+              Text(S.get('find_the_emotion'),
                   style: TextStyle(color: Color(0xFF6B7280))),
               Text(_target.name,
                   style: const TextStyle(
@@ -341,7 +342,7 @@ class _ScenarioEmotionGameState extends State<_ScenarioEmotionGame> {
       ...pool.where((e) => e.name != s.emotion).take(2),
     ]..shuffle();
     return ActivityShell(
-      title: 'Émotions',
+      title: S.get('emotions_title'),
       child: Stack(children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
@@ -364,7 +365,7 @@ class _ScenarioEmotionGameState extends State<_ScenarioEmotionGame> {
                 ),
               ),
               const SizedBox(height: 18),
-              const Text('How would you feel?',
+              Text(S.get('how_would_you_feel'),
                   style: TextStyle(color: Color(0xFF6B7280))),
               const SizedBox(height: 12),
               Wrap(
@@ -442,12 +443,12 @@ class _IntensityGameState extends State<_IntensityGame> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Émotions',
+      title: S.get('emotions_title'),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
         child: Column(
           children: [
-            const Text('Pick an emotion',
+            Text(S.get('pick_emotion'),
                 style: TextStyle(color: Color(0xFF6B7280))),
             const SizedBox(height: 8),
             Wrap(
@@ -502,7 +503,7 @@ class _IntensityGameState extends State<_IntensityGame> {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 28, vertical: 12),
               ),
-              child: const Text('Save my feeling',
+              child: Text(S.get('save_feeling'),
                   style: TextStyle(fontWeight: FontWeight.w900)),
             ),
           ],
