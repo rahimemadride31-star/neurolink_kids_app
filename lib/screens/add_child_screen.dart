@@ -23,12 +23,12 @@ class _AddChildScreenState extends State<AddChildScreen> {
   String _diagnosis = 'Not diagnosed';
   bool _startedSchool = true;
 
-  static const _diagnoses = [
-    'Autism',
-    'ADHD',
-    'Speech delay',
-    'Learning difficulty',
-    'Not diagnosed',
+  List<String> get _diagnoses => [
+    S.get('autism'),
+    S.get('adhd'),
+    S.get('speech_delay'),
+    S.get('learning_difficulty'),
+    S.get('not_diagnosed'),
   ];
 
   @override
@@ -52,37 +52,37 @@ class _AddChildScreenState extends State<AddChildScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const _Label('Nom de l\'enfant'),
+              _Label(S.get('child_name')),
               TextField(
                 controller: _name,
-                decoration: const InputDecoration(
-                  hintText: 'Ex: Emma',
+                decoration: InputDecoration(
+                  hintText: S.get('example_name'),
                   prefixIcon: Icon(Icons.child_care),
                 ),
               ),
               const SizedBox(height: 14),
-              const _Label('Âge'),
+              _Label(S.get('age_label')),
               TextField(
                 controller: _age,
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  hintText: 'Ex: 7',
+                decoration: InputDecoration(
+                  hintText: S.get('example_age'),
                   prefixIcon: Icon(Icons.cake_outlined),
                 ),
               ),
               const SizedBox(height: 14),
-              const _Label('Genre'),
+              _Label(S.get('gender_label')),
               Row(
                 children: [
                   _Pill(
-                    label: 'Garçon',
+                    label: S.get('boy'),
                     selected: _gender == 'Boy',
                     onTap: () => setState(() => _gender = 'Boy'),
                     color: AppColors.primary,
                   ),
                   const SizedBox(width: 10),
                   _Pill(
-                    label: 'Fille',
+                    label: S.get('girl'),
                     selected: _gender == 'Girl',
                     onTap: () => setState(() => _gender = 'Girl'),
                     color: AppColors.accentPink,
@@ -90,16 +90,16 @@ class _AddChildScreenState extends State<AddChildScreen> {
                 ],
               ),
               const SizedBox(height: 14),
-              const _Label('Nom de l\'école'),
+              _Label(S.get('school_name')),
               TextField(
                 controller: _school,
-                decoration: const InputDecoration(
-                  hintText: "Nom de l'école",
+                decoration: InputDecoration(
+                  hintText: S.get('school_name'),
                   prefixIcon: Icon(Icons.school_outlined),
                 ),
               ),
               const SizedBox(height: 14),
-              const _Label('Type de diagnostic'),
+              _Label(S.get('diagnosis_type')),
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
@@ -113,18 +113,18 @@ class _AddChildScreenState extends State<AddChildScreen> {
                     .toList(),
               ),
               const SizedBox(height: 14),
-              const _Label("Votre enfant a-t-il commencé l'école ?"),
+              _Label(S.get('started_school')),
               Row(
                 children: [
                   _Pill(
-                    label: 'Oui',
+                    label: S.get('yes'),
                     selected: _startedSchool,
                     onTap: () => setState(() => _startedSchool = true),
                     color: AppColors.accentGreen,
                   ),
                   const SizedBox(width: 10),
                   _Pill(
-                    label: 'Non',
+                    label: S.get('no'),
                     selected: !_startedSchool,
                     onTap: () => setState(() => _startedSchool = false),
                     color: AppColors.accentRed,
@@ -133,7 +133,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
               ),
               const SizedBox(height: 26),
               PrimaryButton(
-                label: "Continuer vers l'évaluation",
+                label: S.get('continue_assessment'),
                 icon: Icons.arrow_forward,
                 gradient: AppColors.blueGradient,
                 onPressed: _save,
@@ -149,7 +149,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
   void _save() {
     if (_name.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Veuillez saisir le nom de l'enfant")),
+        SnackBar(content: Text(S.get('enter_child_name'))),
       );
       return;
     }

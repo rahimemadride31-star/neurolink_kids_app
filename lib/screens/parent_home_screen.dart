@@ -595,7 +595,7 @@ class _FooterTiles extends StatelessWidget {
       children: [
         _FooterTile(
           icon: Icons.support_agent_rounded,
-          label: 'Contact',
+          label: S.get('contact'),
           gradient: const LinearGradient(
             colors: [Color(0xFF60A5FA), Color(0xFF818CF8)],
           ),
@@ -608,21 +608,20 @@ class _FooterTiles extends StatelessWidget {
         const SizedBox(width: 8),
         _FooterTile(
           icon: Icons.help_rounded,
-          label: 'Aide',
+          label: S.get('help'),
           gradient: const LinearGradient(
             colors: [Color(0xFFFBBF24), Color(0xFFF97316)],
           ),
           onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text(
-                  "Pour de l'aide, écrivez-nous via Contact."),
+            SnackBar(
+              content: Text(S.get('help_coming')),
             ),
           ),
         ),
         const SizedBox(width: 8),
         _FooterTile(
           icon: Icons.settings_rounded,
-          label: 'Paramètres',
+          label: S.get('settings'),
           gradient: const LinearGradient(
             colors: [Color(0xFFEC4899), Color(0xFFA855F7)],
           ),
@@ -750,22 +749,22 @@ class _RetakeAssessmentBanner extends StatelessWidget {
               child: const Icon(Icons.refresh_rounded, color: Colors.white),
             ),
             const SizedBox(width: 12),
-            const Expanded(
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Refaire l'évaluation",
-                    style: TextStyle(
+                    S.get('redo_evaluation'),
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w900,
                       fontSize: 16,
                     ),
                   ),
-                  SizedBox(height: 2),
+                  const SizedBox(height: 2),
                   Text(
-                    '50 questions • 5 domaines',
-                    style: TextStyle(
+                    S.get('redo_eval_subtitle'),
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 12,
                     ),
