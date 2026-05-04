@@ -47,6 +47,7 @@ class _NeuroLinkKidsAppState extends State<NeuroLinkKidsApp> {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: const [
+          Locale('en'),
           Locale('fr'),
           Locale('ar'),
         ],

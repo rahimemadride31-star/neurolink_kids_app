@@ -320,6 +320,25 @@ class S {
     'streak': 'Streak',
     'play_again': 'Play Again',
 
+    // Missing activity keys
+    'letter_sound_game': 'Letter Sound Game',
+    'all_letters': 'All Letters',
+    'emotion_happy': 'Happy',
+    'emotion_sad': 'Sad',
+    'emotion_angry': 'Angry',
+    'emotion_scared': 'Scared',
+    'emotion_excited': 'Excited',
+    'emotion_calm': 'Calm',
+    'tap_to_speak': 'Tap to Speak',
+    'build_sentence': 'Build a Sentence',
+    'breathing_exercise': 'Breathing Exercise',
+    'pop_bubbles': 'Pop the Bubbles',
+    'color_mandala': 'Color the Mandala',
+    'calming_jar': 'Calming Jar',
+    'free_draw': 'Free Draw',
+    'color_by_number': 'Color by Numbers',
+    'drawing_tools': 'Drawing Tools',
+
     // Screens & forms
     'choose_patient': 'Choose a patient...',
     'date_label': 'Date',
