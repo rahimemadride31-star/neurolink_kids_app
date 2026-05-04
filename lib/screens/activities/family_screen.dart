@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../../state/app_state.dart';
+import '../../data/strings.dart';
 import '../../widgets/activity_kit.dart';
 
 class _Family {
@@ -36,7 +37,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
   Widget build(BuildContext context) {
     final f = _family[_index];
     return ActivityShell(
-      title: 'Family Learning',
+      title: S.get('family_learning'),
       titleColor: const Color(0xFF1F2937),
       backgroundColors: const [Color(0xFFFFF8EC), Color(0xFFEEF2FF)],
       child: ListView(
@@ -71,7 +72,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
                   ),
                   child: Column(
                     children: [
-                      const Text('Relation:',
+                      Text(S.get('relation_label'),
                           style: TextStyle(color: Colors.white)),
                       Text(f.role,
                           style: const TextStyle(
@@ -100,14 +101,14 @@ class _FamilyScreenState extends State<FamilyScreen> {
             ),
           ),
           const SizedBox(height: 18),
-          const Text('Activities',
+          Text(S.get('activities_label'),
               style: TextStyle(
                 fontWeight: FontWeight.w900,
                 color: Color(0xFF1F2937),
               )),
           const SizedBox(height: 10),
           GameModeListTile(
-            title: 'Match Family Member',
+            title: S.get('match_family'),
             icon: Icons.group_rounded,
             gradient: const LinearGradient(colors: [
               Color(0xFFFB7185),
@@ -119,7 +120,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
           ),
           const SizedBox(height: 10),
           GameModeListTile(
-            title: 'Family Order',
+            title: S.get('family_order'),
             icon: Icons.list_alt_rounded,
             gradient: const LinearGradient(colors: [
               Color(0xFFFBBF24),
@@ -130,7 +131,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
             )),
           ),
           const SizedBox(height: 18),
-          const Text('Family Members',
+          Text(S.get('family_members'),
               style: TextStyle(
                 fontWeight: FontWeight.w900,
                 color: Color(0xFF1F2937),
@@ -222,14 +223,14 @@ class _MatchFamilyGameState extends State<_MatchFamilyGame> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Family Learning',
+      title: S.get('family_learning'),
       backgroundColors: const [Color(0xFFFFF8EC), Color(0xFFEEF2FF)],
       child: Stack(children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
           child: Column(
             children: [
-              const Text('Who is the',
+              Text(S.get('who_is_the'),
                   style:
                       TextStyle(fontSize: 18, color: Color(0xFF6B7280))),
               Text(
@@ -357,14 +358,14 @@ class _FamilyOrderGameState extends State<_FamilyOrderGame> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Family Learning',
+      title: S.get('family_learning'),
       backgroundColors: const [Color(0xFFFFF8EC), Color(0xFFEEF2FF)],
       child: Stack(children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
           child: Column(
             children: [
-              const Text('Tap them in order from oldest to youngest',
+              Text(S.get('tap_order_oldest'),
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Color(0xFF6B7280))),
               const SizedBox(height: 14),

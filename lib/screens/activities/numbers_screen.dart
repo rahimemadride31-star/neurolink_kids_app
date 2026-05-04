@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../../data/strings.dart';
 import '../../state/app_state.dart';
 import '../../widgets/activity_kit.dart';
 
@@ -11,15 +12,15 @@ class NumbersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Numbers Learning',
+      title: S.get('numbers_learning'),
       titleColor: const Color(0xFF22C55E),
       backgroundColors: const [Color(0xFFE0F2FE), Color(0xFFE7FBE7)],
       child: ListView(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
         children: [
           GameModeCard(
-            title: 'Count Objects',
-            subtitle: 'How many do you see?',
+            title: S.get('count_objects'),
+            subtitle: S.get('how_many_see'),
             icon: const Text('🔢', style: TextStyle(fontSize: 32)),
             gradient: const LinearGradient(
               colors: [Color(0xFF60A5FA), Color(0xFF22D3EE)],
@@ -32,8 +33,8 @@ class NumbersScreen extends StatelessWidget {
           ),
           const SizedBox(height: 14),
           GameModeCard(
-            title: 'Number Matching',
-            subtitle: 'Match numbers to groups!',
+            title: S.get('number_matching'),
+            subtitle: S.get('match_numbers_groups'),
             icon: const Text('🎯', style: TextStyle(fontSize: 32)),
             gradient: const LinearGradient(
               colors: [Color(0xFF22C55E), Color(0xFF14B8A6)],
@@ -46,8 +47,8 @@ class NumbersScreen extends StatelessWidget {
           ),
           const SizedBox(height: 14),
           GameModeCard(
-            title: 'Trace Number',
-            subtitle: 'Draw with your finger!',
+            title: S.get('trace_number'),
+            subtitle: S.get('draw_finger'),
             icon: const Text('✏️', style: TextStyle(fontSize: 32)),
             gradient: const LinearGradient(
               colors: [Color(0xFF38BDF8), Color(0xFF60A5FA)],
@@ -98,7 +99,7 @@ class _CountObjectsGameState extends State<_CountObjectsGame> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Numbers Learning',
+      title: S.get('numbers_learning'),
       titleColor: const Color(0xFF22C55E),
       backgroundColors: const [Color(0xFFE0F2FE), Color(0xFFE7FBE7)],
       child: Stack(
@@ -107,8 +108,8 @@ class _CountObjectsGameState extends State<_CountObjectsGame> {
             padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
             child: Column(
               children: [
-                const Text(
-                  'How many?',
+                Text(
+                  S.get('how_many'),
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.w900,
@@ -224,7 +225,7 @@ class _NumberMatchingGameState extends State<_NumberMatchingGame> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Numbers Learning',
+      title: S.get('numbers_learning'),
       titleColor: const Color(0xFF22C55E),
       backgroundColors: const [Color(0xFFE0F2FE), Color(0xFFE7FBE7)],
       child: Stack(
@@ -334,16 +335,16 @@ class _TraceNumberGameState extends State<_TraceNumberGame> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Numbers Learning',
+      title: S.get('numbers_learning'),
       titleColor: const Color(0xFF22C55E),
       backgroundColors: const [Color(0xFFE0F2FE), Color(0xFFE7FBE7)],
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
         child: Column(
           children: [
-            const Text(
-              'Trace the number',
-              style: TextStyle(
+            Text(
+              S.get('trace_the_number'),
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w900,
                 color: Color(0xFF1F2937),
@@ -433,7 +434,7 @@ class _TraceNumberGameState extends State<_TraceNumberGame> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 22, vertical: 12),
                   ),
-                  child: const Text('Clear'),
+                  child: Text(S.get('clear')),
                 ),
                 ElevatedButton(
                   onPressed: () {

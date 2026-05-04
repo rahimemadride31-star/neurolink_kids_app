@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../../state/app_state.dart';
+import '../../data/strings.dart';
 import '../../widgets/activity_kit.dart';
 
 class _Letter {
@@ -38,7 +39,7 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
   Widget build(BuildContext context) {
     final l = _letters[_index];
     return ActivityShell(
-      title: 'Alphabet Learning',
+      title: S.get('alphabet_learning'),
       titleColor: const Color(0xFF1F2937),
       backgroundColors: const [Color(0xFFFFF8EC), Color(0xFFEEF2FF)],
       child: ListView(
@@ -123,9 +124,9 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
             ],
           ),
           const SizedBox(height: 18),
-          const Text(
-            'Activities',
-            style: TextStyle(
+          Text(
+            S.get('activities_label'),
+            style: const TextStyle(
               fontWeight: FontWeight.w900,
               fontSize: 16,
               color: Color(0xFF1F2937),
@@ -133,7 +134,7 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
           ),
           const SizedBox(height: 10),
           GameModeListTile(
-            title: 'Letter Tracing',
+            title: S.get('letter_tracing'),
             icon: Icons.edit_rounded,
             gradient: const LinearGradient(colors: [
               Color(0xFFFB7185),
@@ -145,7 +146,7 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
           ),
           const SizedBox(height: 10),
           GameModeListTile(
-            title: 'Letter Sound Game',
+            title: S.get('letter_sound_game'),
             icon: Icons.music_note_rounded,
             gradient: const LinearGradient(colors: [
               Color(0xFF60A5FA),
@@ -157,7 +158,7 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
           ),
           const SizedBox(height: 10),
           GameModeListTile(
-            title: 'Find the Letter',
+            title: S.get('find_letter'),
             icon: Icons.search_rounded,
             gradient: const LinearGradient(colors: [
               Color(0xFFFBBF24),
@@ -168,9 +169,9 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
             )),
           ),
           const SizedBox(height: 18),
-          const Text(
-            'All Letters',
-            style: TextStyle(
+          Text(
+            S.get('all_letters'),
+            style: const TextStyle(
               fontWeight: FontWeight.w900,
               fontSize: 16,
               color: Color(0xFF1F2937),
@@ -265,14 +266,14 @@ class _LetterTracingGameState extends State<_LetterTracingGame> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Alphabet Learning',
+      title: S.get('alphabet_learning'),
       backgroundColors: const [Color(0xFFFFF8EC), Color(0xFFEEF2FF)],
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
         child: Column(
           children: [
             Text(
-              'Trace the letter ${widget.letter.letter}',
+              S.get('trace_letter') + '  ${widget.letter.letter}',
               style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w900,
@@ -335,7 +336,7 @@ class _LetterTracingGameState extends State<_LetterTracingGame> {
                     _strokes.clear();
                     _current = [];
                   }),
-                  child: const Text('Clear'),
+                  child: Text(S.get('clear')),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -351,7 +352,7 @@ class _LetterTracingGameState extends State<_LetterTracingGame> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 26, vertical: 12),
                   ),
-                  child: const Text('Done!',
+                  child: Text(S.get('done_excl'),
                       style: TextStyle(fontWeight: FontWeight.w900)),
                 ),
               ],
@@ -415,7 +416,7 @@ class _LetterSoundGameState extends State<_LetterSoundGame> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Alphabet Learning',
+      title: S.get('alphabet_learning'),
       backgroundColors: const [Color(0xFFFFF8EC), Color(0xFFEEF2FF)],
       child: Stack(
         children: [
@@ -519,7 +520,7 @@ class _FindTheLetterGameState extends State<_FindTheLetterGame> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Alphabet Learning',
+      title: S.get('alphabet_learning'),
       backgroundColors: const [Color(0xFFFFF8EC), Color(0xFFEEF2FF)],
       child: Stack(
         children: [

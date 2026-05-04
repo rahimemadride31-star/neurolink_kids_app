@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../app_theme.dart';
+import '../data/strings.dart';
 import '../state/app_state.dart';
 import '../widgets/kids_background.dart';
 import '../widgets/language_switcher.dart';
@@ -15,7 +17,7 @@ class TeacherHomeScreen extends StatelessWidget {
     final state = AppStateScope.of(context);
     return Scaffold(
       body: KidsBackground(
-        overlayOpacity: 0.93,
+        overlayOpacity: 0.60,
         child: SafeArea(
           child: ListView(
             padding: const EdgeInsets.all(16),
@@ -25,16 +27,16 @@ class TeacherHomeScreen extends StatelessWidget {
                   Image.asset('assets/images/logo.png',
                       width: 44, height: 44),
                   const SizedBox(width: 8),
-                  const Expanded(
-                    child: Text('NeuroLink Kids',
-                        style: TextStyle(
+                  Expanded(
+                    child: Text(S.get('app_name'),
+                        style: const TextStyle(
                             fontWeight: FontWeight.w900, fontSize: 16)),
                   ),
                   const LanguageSwitcher(),
                   const SizedBox(width: 8),
                   const CircleAvatar(
                     backgroundColor: AppColors.accentOrange,
-                    child: Text('T',
+                    child: Text('E',
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w900)),
@@ -42,11 +44,11 @@ class TeacherHomeScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 14),
-              const Text('Hello, 👋  Teacher',
-                  style: TextStyle(
+              Text(S.get('teacher_greeting'),
+                  style: const TextStyle(
                       fontSize: 26, fontWeight: FontWeight.w900)),
-              const Text("Manage your students' progress",
-                  style: TextStyle(color: AppColors.textMuted)),
+              Text(S.get('manage_students'),
+                  style: const TextStyle(color: AppColors.textMuted)),
               const SizedBox(height: 16),
               Container(
                 padding: const EdgeInsets.all(16),
@@ -57,11 +59,11 @@ class TeacherHomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Row(children: [
-                      Icon(Icons.bar_chart, color: Colors.white),
-                      SizedBox(width: 8),
-                      Text('Class Overview',
-                          style: TextStyle(
+                    Row(children: [
+                      const Icon(Icons.bar_chart, color: Colors.white),
+                      const SizedBox(width: 8),
+                      Text(S.get('class_overview'),
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.w900)),
@@ -69,10 +71,10 @@ class TeacherHomeScreen extends StatelessWidget {
                     const SizedBox(height: 12),
                     Row(
                       children: [
-                        _Mini(label: 'Avg Task', value: '78%'),
-                        _Mini(label: 'Avg Score', value: '82%'),
+                        _Mini(label: S.get('avg_task'), value: '78%'),
+                        _Mini(label: S.get('avg_score'), value: '82%'),
                         _Mini(
-                            label: 'Students',
+                            label: S.get('students_label'),
                             value: '${state.children.length}'),
                       ],
                     ),
@@ -80,8 +82,8 @@ class TeacherHomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 18),
-              const Text('Student Performance',
-                  style: TextStyle(
+              Text(S.get('student_performance'),
+                  style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.w900)),
               const SizedBox(height: 10),
               ...state.children.map((c) => _StudentCard(name: c.name, color: c.color)),
@@ -95,9 +97,9 @@ class TeacherHomeScreen extends StatelessWidget {
                     gradient: AppColors.orangeGradient,
                     borderRadius: BorderRadius.circular(28),
                   ),
-                  child: const Center(
-                    child: Text('+ Add Report',
-                        style: TextStyle(
+                  child: Center(
+                    child: Text('+ ${S.get('add_report')}',
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.w800)),
@@ -105,11 +107,75 @@ class TeacherHomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 18),
-              const Text('Recent Reports',
-                  style: TextStyle(
+              Text(S.get('recent_reports'),
+                  style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.w900)),
               const SizedBox(height: 8),
               const ReportsList(),
+              const SizedBox(height: 18),
+              Text(S.get('medical_reports'),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w900)),
+              const SizedBox(height: 8),
+              if (state.medicalReports.isEmpty)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: Center(
+                    child: Text(S.get('no_medical_reports'),
+                        style: const TextStyle(color: AppColors.textMuted)),
+                  ),
+                )
+              else
+                ...state.medicalReports.map((r) => Container(
+                      margin: const EdgeInsets.only(bottom: 10),
+                      padding: const EdgeInsets.all(14),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: AppColors.border),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(children: [
+                            Expanded(
+                              child: Text(r.patientName,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w800)),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 2),
+                              decoration: BoxDecoration(
+                                color: AppColors.accentTeal.withOpacity(0.15),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Text(S.get('role_doctor'),
+                                  style: const TextStyle(
+                                      color: AppColors.accentTeal,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 11)),
+                            ),
+                          ]),
+                          const SizedBox(height: 4),
+                          Text(DateFormat('dd/MM/yyyy').format(r.date),
+                              style: const TextStyle(
+                                  color: AppColors.textMuted, fontSize: 12)),
+                          if (r.observation.isNotEmpty) ...[
+                            const SizedBox(height: 6),
+                            Text(r.observation,
+                                style: const TextStyle(fontSize: 13)),
+                          ],
+                          if (r.diagnosisUpdate.isNotEmpty) ...[
+                            const SizedBox(height: 4),
+                            Text(r.diagnosisUpdate,
+                                style: const TextStyle(
+                                    color: AppColors.accentPurple,
+                                    fontSize: 12)),
+                          ],
+                        ],
+                      ),
+                    )),
             ],
           ),
         ),
@@ -209,7 +275,7 @@ class _StudentCard extends StatelessWidget {
                   color: AppColors.accentGreen.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Text('Level 2',
+                child: Text('${S.get('level')} 2',
                     style: TextStyle(
                         color: AppColors.accentGreen,
                         fontWeight: FontWeight.w800,
@@ -218,10 +284,10 @@ class _StudentCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          _bar('Reading', 0.78, AppColors.accentGreen),
-          _bar('Writing', 0.65, AppColors.primary),
-          _bar('Math', 0.72, AppColors.accentPurple),
-          _bar('Social', 0.84, AppColors.accentOrange),
+          _bar(S.get('reading'), 0.78, AppColors.accentGreen),
+          _bar(S.get('writing'), 0.65, AppColors.primary),
+          _bar(S.get('math'), 0.72, AppColors.accentPurple),
+          _bar(S.get('social'), 0.84, AppColors.accentOrange),
         ],
       ),
     );

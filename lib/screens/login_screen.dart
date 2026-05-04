@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../app_theme.dart';
+import '../data/strings.dart';
 import '../state/app_state.dart';
 import '../widgets/kids_background.dart';
 import '../widgets/language_switcher.dart';
@@ -16,6 +17,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _carteId = TextEditingController();
   final _email = TextEditingController();
   final _password = TextEditingController();
   bool _showPassword = false;
@@ -23,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
+    _carteId.dispose();
     _email.dispose();
     _password.dispose();
     super.dispose();
@@ -52,15 +55,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 Image.asset('assets/images/logo.png',
                     width: 110, height: 110),
                 const SizedBox(height: 8),
-                const Text(
-                  'Bienvenue',
+                Text(
+                  S.get('welcome_back'),
                   style:
-                      TextStyle(fontSize: 28, fontWeight: FontWeight.w900),
+                      const TextStyle(fontSize: 28, fontWeight: FontWeight.w900),
                 ),
                 const SizedBox(height: 4),
-                const Text(
-                  'Connectez-vous pour continuer',
-                  style: TextStyle(color: AppColors.textMuted),
+                Text(
+                  S.get('login_subtitle'),
+                  style: const TextStyle(color: AppColors.textMuted),
                 ),
                 const SizedBox(height: 24),
                 _RolePicker(
@@ -69,11 +72,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 20),
                 TextField(
+                  controller: _carteId,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    labelText: S.get('carte_nationale'),
+                    prefixIcon: const Icon(Icons.credit_card),
+                  ),
+                ),
+                const SizedBox(height: 14),
+                TextField(
                   controller: _email,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    prefixIcon: Icon(Icons.alternate_email),
+                  decoration: InputDecoration(
+                    labelText: S.get('email'),
+                    prefixIcon: const Icon(Icons.alternate_email),
                   ),
                 ),
                 const SizedBox(height: 14),
@@ -81,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: _password,
                   obscureText: !_showPassword,
                   decoration: InputDecoration(
-                    labelText: 'Mot de passe',
+                    labelText: S.get('password'),
                     prefixIcon: const Icon(Icons.lock_outline),
                     suffixIcon: IconButton(
                       onPressed: () =>
@@ -96,18 +108,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {},
-                    child: const Text('Mot de passe oublié ?'),
+                    child: Text(S.get('forgot_password')),
                   ),
                 ),
                 const SizedBox(height: 8),
                 PrimaryButton(
-                  label: 'Se connecter',
+                  label: S.get('log_in'),
                   icon: Icons.login,
                   gradient: AppColors.orangeGradient,
                   onPressed: () {
                     state.setRole(_role);
                     state.userName = _email.text.split('@').first.isEmpty
-                        ? 'Parent'
+                        ? S.get(_role == UserRole.parent ? 'role_parent' : _role == UserRole.teacher ? 'role_teacher' : 'role_doctor')
                         : _email.text.split('@').first;
                     Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(builder: (_) => const HomeShell()),
@@ -119,14 +131,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Vous n'avez pas de compte ?  "),
+                    Text("${S.get('no_account')}  "),
                     TextButton(
                       onPressed: () => Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                             builder: (_) => const SignupScreen()),
                       ),
-                      child: const Text("S'inscrire",
-                          style: TextStyle(fontWeight: FontWeight.w800)),
+                      child: Text(S.get('sign_up'),
+                          style: const TextStyle(fontWeight: FontWeight.w800)),
                     ),
                   ],
                 ),
@@ -146,32 +158,41 @@ class _RolePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget tile(UserRole r, IconData icon, String label) {
-      final s = r == selected;
+    Widget chip(UserRole role, IconData icon, String label) {
+      final s = selected == role;
       return Expanded(
         child: GestureDetector(
-          onTap: () => onChanged(r),
-          child: Container(
+          onTap: () => onChanged(role),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
             margin: const EdgeInsets.symmetric(horizontal: 4),
-            padding: const EdgeInsets.symmetric(vertical: 12),
+            padding: const EdgeInsets.symmetric(vertical: 14),
             decoration: BoxDecoration(
               gradient: s ? AppColors.blueGradient : null,
               color: s ? null : Colors.white,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
-                color: s ? Colors.transparent : AppColors.border,
-              ),
+                  color: s ? Colors.transparent : AppColors.border),
+              boxShadow: s
+                  ? [
+                      BoxShadow(
+                        color: AppColors.primary.withOpacity(0.2),
+                        blurRadius: 8,
+                        offset: const Offset(0, 3),
+                      ),
+                    ]
+                  : null,
             ),
             child: Column(
               children: [
-                Icon(icon, color: s ? Colors.white : AppColors.primary),
-                const SizedBox(height: 4),
+                Icon(icon,
+                    color: s ? Colors.white : AppColors.primary, size: 28),
+                const SizedBox(height: 6),
                 Text(label,
                     style: TextStyle(
-                      color: s ? Colors.white : AppColors.textDark,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 13,
-                    )),
+                        color: s ? Colors.white : AppColors.textDark,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 12)),
               ],
             ),
           ),
@@ -181,9 +202,10 @@ class _RolePicker extends StatelessWidget {
 
     return Row(
       children: [
-        tile(UserRole.parent, Icons.family_restroom, 'Parent'),
-        tile(UserRole.teacher, Icons.school_outlined, 'Enseignant'),
-        tile(UserRole.doctor, Icons.medical_services_outlined, 'Médecin'),
+        chip(UserRole.parent, Icons.family_restroom, S.get('role_parent')),
+        chip(UserRole.teacher, Icons.school_outlined, S.get('role_teacher')),
+        chip(UserRole.doctor, Icons.medical_services_outlined,
+            S.get('role_doctor')),
       ],
     );
   }

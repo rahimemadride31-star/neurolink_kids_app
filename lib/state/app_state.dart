@@ -5,7 +5,7 @@ import '../models/report.dart';
 
 enum UserRole { parent, teacher, doctor }
 
-enum AppLanguage { en, fr, ar }
+enum AppLanguage { fr, ar, en }
 
 class AppState extends ChangeNotifier {
   UserRole role = UserRole.parent;
@@ -14,7 +14,7 @@ class AppState extends ChangeNotifier {
 
   final List<ChildProfile> children = [
     ChildProfile(
-      name: 'Emma',
+      name: 'Nedjelaa',
       age: 7,
       gender: 'Girl',
       school: 'Sunshine Primary',
@@ -23,7 +23,7 @@ class AppState extends ChangeNotifier {
       color: const Color(0xFFF59E0B),
     ),
     ChildProfile(
-      name: 'Charlie',
+      name: 'Rahim',
       age: 6,
       gender: 'Boy',
       school: 'Bright Start School',
@@ -38,7 +38,7 @@ class AppState extends ChangeNotifier {
 
   final List<DailyReport> reports = [
     DailyReport(
-      childName: 'Charlie',
+      childName: 'Rahim',
       date: DateTime(2026, 4, 24),
       authorRole: 'Teacher',
       emotion: '😄',
@@ -47,22 +47,22 @@ class AppState extends ChangeNotifier {
       strangeBehaviorNote: '',
       performance: 'Excellent',
       learningActivities: ['Reading', 'Math'],
-      notes: 'Charlie showed great improvement in reading comprehension today.',
+      notes: 'Rahim showed great improvement in reading comprehension today.',
     ),
     DailyReport(
-      childName: 'Charlie',
+      childName: 'Rahim',
       date: DateTime(2026, 4, 22),
       authorRole: 'Parent',
       emotion: '🙂',
       behaviors: ['Calm'],
       strangeBehavior: true,
-      strangeBehaviorNote: 'Charlie repeatedly tapped on the desk during group activity.',
+      strangeBehaviorNote: 'Rahim repeatedly tapped on the desk during group activity.',
       performance: 'Good',
       learningActivities: ['Drawing'],
       notes: 'Showed some difficulty focusing during afternoon session.',
     ),
     DailyReport(
-      childName: 'Charlie',
+      childName: 'Rahim',
       date: DateTime(2026, 4, 20),
       authorRole: 'Teacher',
       emotion: '😆',

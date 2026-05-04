@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../app_theme.dart';
+import '../data/strings.dart';
 import '../state/app_state.dart';
 import '../widgets/kids_background.dart';
 
@@ -26,16 +27,16 @@ class ProgressScreen extends StatelessWidget {
 
     return Scaffold(
       body: KidsBackground(
-        overlayOpacity: 0.94,
+        overlayOpacity: 0.62,
         child: SafeArea(
           child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              const Text('Progrès',
-                  style: TextStyle(
+              Text(S.get('progress_title'),
+                  style: const TextStyle(
                       fontSize: 22, fontWeight: FontWeight.w900)),
               const SizedBox(height: 4),
-              Text("Suivi des progrès de ${child.name}",
+              Text("${S.get('tracking_progress')} ${child.name}",
                   style:
                       const TextStyle(color: AppColors.textMuted)),
               const SizedBox(height: 18),
@@ -43,14 +44,14 @@ class ProgressScreen extends StatelessWidget {
                 children: [
                   Expanded(
                       child: _StatCard(
-                          label: 'Activités',
+                          label: S.get('activities_stat'),
                           value: '24',
                           icon: Icons.bolt,
                           gradient: AppColors.orangeGradient)),
                   const SizedBox(width: 12),
                   Expanded(
                       child: _StatCard(
-                          label: 'Vidéos',
+                          label: S.get('videos_stat'),
                           value: '8',
                           icon: Icons.play_circle,
                           gradient: AppColors.purpleGradient)),
@@ -61,14 +62,14 @@ class ProgressScreen extends StatelessWidget {
                 children: [
                   Expanded(
                       child: _StatCard(
-                          label: 'Rapports',
+                          label: S.get('reports_stat'),
                           value: '${reportsForChild.length}',
                           icon: Icons.description,
                           gradient: AppColors.blueGradient)),
                   const SizedBox(width: 12),
                   Expanded(
                       child: _StatCard(
-                          label: 'Score',
+                          label: S.get('score_stat'),
                           value:
                               '${(((excellent * 4 + good * 3 + avg * 2 + poor * 1) / (total * 4)) * 100).round()}%',
                           icon: Icons.star,
@@ -76,24 +77,24 @@ class ProgressScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 22),
-              const Text('Performance par catégorie',
+              Text(S.get('performance_by_cat'),
                   style:
-                      TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
+                      const TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
               const SizedBox(height: 12),
               _Bar(
-                  label: 'Excellent',
+                  label: S.get('excellent'),
                   value: excellent / total,
                   color: AppColors.accentGreen),
               _Bar(
-                  label: 'Good',
+                  label: S.get('good'),
                   value: good / total,
                   color: AppColors.primary),
               _Bar(
-                  label: 'Average',
+                  label: S.get('average'),
                   value: avg / total,
                   color: AppColors.accentOrange),
               _Bar(
-                  label: 'Poor',
+                  label: S.get('poor'),
                   value: poor / total,
                   color: AppColors.accentRed),
             ],
@@ -151,18 +152,18 @@ class _Bar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final v = value.clamp(0.0, 1.0);
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.only(bottom: 14),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(label,
-                  style: const TextStyle(fontWeight: FontWeight.w800)),
-              Text('${(v * 100).round()}%',
+              Expanded(
+                child: Text(label,
+                    style: const TextStyle(fontWeight: FontWeight.w700)),
+              ),
+              Text('${(value * 100).round()}%',
                   style: TextStyle(
                       color: color, fontWeight: FontWeight.w800)),
             ],
@@ -171,10 +172,10 @@ class _Bar extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: LinearProgressIndicator(
-              value: v,
-              minHeight: 10,
+              value: value,
               backgroundColor: AppColors.border,
-              valueColor: AlwaysStoppedAnimation(color),
+              color: color,
+              minHeight: 10,
             ),
           ),
         ],

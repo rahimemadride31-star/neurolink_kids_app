@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../state/app_state.dart';
+import '../../data/strings.dart';
 import '../../widgets/activity_kit.dart';
 
 class CommunicationScreen extends StatelessWidget {
@@ -9,14 +10,14 @@ class CommunicationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Communication',
+      title: S.get('communication_title'),
       titleColor: const Color(0xFFEC4899),
       backgroundColors: const [Color(0xFFFCE7F3), Color(0xFFFFF7ED)],
       child: ListView(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
         children: [
           GameModeListTile(
-            title: 'Tap to Speak',
+            title: S.get('tap_to_speak'),
             icon: Icons.record_voice_over_rounded,
             gradient: const LinearGradient(colors: [
               Color(0xFFEC4899),
@@ -28,7 +29,7 @@ class CommunicationScreen extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           GameModeListTile(
-            title: 'Build a Sentence',
+            title: S.get('build_sentence'),
             icon: Icons.auto_awesome_motion_rounded,
             gradient: const LinearGradient(colors: [
               Color(0xFFFBBF24),
@@ -72,7 +73,7 @@ class _PhraseBoardScreenState extends State<_PhraseBoardScreen> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Communication',
+      title: S.get('communication_title'),
       backgroundColors: const [Color(0xFFFCE7F3), Color(0xFFFFF7ED)],
       child: Column(
         children: [
@@ -172,7 +173,7 @@ class _SentenceBuilderScreenState extends State<_SentenceBuilderScreen> {
   Widget build(BuildContext context) {
     final canSpeak = _s != null && _a != null && _o != null;
     return ActivityShell(
-      title: 'Communication',
+      title: S.get('communication_title'),
       backgroundColors: const [Color(0xFFFCE7F3), Color(0xFFFFF7ED)],
       child: ListView(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),

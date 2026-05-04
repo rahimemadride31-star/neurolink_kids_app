@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../../data/strings.dart';
 import '../../state/app_state.dart';
 import '../../widgets/activity_kit.dart';
 
@@ -18,13 +19,13 @@ class _ColorsScreenState extends State<ColorsScreen> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Colors Learning',
+      title: S.get('colors_learning'),
       child: ListView(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
         children: [
           GameModeCard(
-            title: 'Tap the Color',
-            subtitle: 'Find the right color!',
+            title: S.get('tap_the_color'),
+            subtitle: S.get('find_right_color'),
             icon: const Text('🎨', style: TextStyle(fontSize: 32)),
             gradient: const LinearGradient(
               colors: [Color(0xFFEC4899), Color(0xFFA855F7)],
@@ -37,8 +38,8 @@ class _ColorsScreenState extends State<ColorsScreen> {
           ),
           const SizedBox(height: 14),
           GameModeCard(
-            title: 'Match Colors',
-            subtitle: 'Drag objects to colors!',
+            title: S.get('match_colors'),
+            subtitle: S.get('drag_objects_colors'),
             icon: const Text('🎯', style: TextStyle(fontSize: 32)),
             gradient: const LinearGradient(
               colors: [Color(0xFF60A5FA), Color(0xFF22C55E)],
@@ -127,15 +128,15 @@ class _TapTheColorGameState extends State<TapTheColorGame> {
   @override
   Widget build(BuildContext context) {
     return ActivityShell(
-      title: 'Colors Learning',
+      title: S.get('colors_learning'),
       child: Stack(
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
             child: Column(
               children: [
-                const Text(
-                  'Tap the',
+                Text(
+                  S.get('tap_the'),
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.w900,
@@ -156,9 +157,9 @@ class _TapTheColorGameState extends State<TapTheColorGame> {
                     ),
                   ),
                 ),
-                const Text(
-                  'color',
-                  style: TextStyle(
+                Text(
+                  S.get('color_word'),
+                  style: const TextStyle(
                     fontSize: 18,
                     color: Color(0xFF6B7280),
                   ),
@@ -183,7 +184,7 @@ class _TapTheColorGameState extends State<TapTheColorGame> {
                   Padding(
                     padding: const EdgeInsets.only(top: 8),
                     child: Text(
-                      'Streak: $_streak 🔥',
+                      '${S.get('streak')}: $_streak 🔥',
                       style: const TextStyle(
                         color: Color(0xFFEF4444),
                         fontWeight: FontWeight.w900,
@@ -241,15 +242,15 @@ class _MatchColorsGameState extends State<MatchColorsGame> {
     final colorsLeft =
         _round.where((p) => !_matched.contains(p.label)).toList();
     return ActivityShell(
-      title: 'Colors Learning',
+      title: S.get('colors_learning'),
       child: Stack(
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
             child: Column(
               children: [
-                const Text(
-                  'Match the objects to\ntheir colors!',
+                Text(
+                  S.get('match_objects_colors'),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 22,
@@ -350,9 +351,9 @@ class _MatchColorsGameState extends State<MatchColorsGame> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 32, vertical: 14),
                     ),
-                    child: const Text(
-                      'Play again',
-                      style: TextStyle(fontWeight: FontWeight.w900),
+                    child: Text(
+                      S.get('replay'),
+                      style: const TextStyle(fontWeight: FontWeight.w900),
                     ),
                   ),
               ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'strings.dart';
+
 enum ActivityKind {
   colors,
   numbers,
@@ -16,20 +18,23 @@ enum ActivityKind {
 }
 
 class ActivityItem {
-  final String title;
-  final String subtitle;
+  final String titleKey;
+  final String subtitleKey;
   final IconData icon;
   final Color iconColor;
   final Gradient iconGradient;
   final ActivityKind kind;
   const ActivityItem({
-    required this.title,
-    required this.subtitle,
+    required this.titleKey,
+    required this.subtitleKey,
     required this.icon,
     required this.iconColor,
     required this.iconGradient,
     required this.kind,
   });
+
+  String get title => S.get(titleKey);
+  String get subtitle => S.get(subtitleKey);
 }
 
 const _gPink = LinearGradient(
@@ -90,96 +95,96 @@ const _gSunset = LinearGradient(
 
 const activities = <ActivityItem>[
   ActivityItem(
-    title: 'Colors Learning',
-    subtitle: 'Recognize and match colors',
+    titleKey: 'colors_learning',
+    subtitleKey: 'colors_subtitle',
     icon: Icons.palette_rounded,
     iconColor: Colors.white,
     iconGradient: _gPink,
     kind: ActivityKind.colors,
   ),
   ActivityItem(
-    title: 'Numbers Learning',
-    subtitle: 'Learn counting & numbers',
+    titleKey: 'numbers_learning',
+    subtitleKey: 'numbers_subtitle',
     icon: Icons.tag_rounded,
     iconColor: Colors.white,
     iconGradient: _gCyan,
     kind: ActivityKind.numbers,
   ),
   ActivityItem(
-    title: 'Alphabet Learning',
-    subtitle: 'Letters & sounds practice',
+    titleKey: 'alphabet_learning',
+    subtitleKey: 'alphabet_subtitle',
     icon: Icons.text_fields_rounded,
     iconColor: Colors.white,
     iconGradient: _gTeal,
     kind: ActivityKind.alphabet,
   ),
   ActivityItem(
-    title: 'Animals Learning',
-    subtitle: 'Animals & their sounds',
+    titleKey: 'animals_learning',
+    subtitleKey: 'animals_subtitle',
     icon: Icons.pets_rounded,
     iconColor: Colors.white,
     iconGradient: _gAmber,
     kind: ActivityKind.animals,
   ),
   ActivityItem(
-    title: 'Family Learning',
-    subtitle: 'Family members & relationships',
+    titleKey: 'family_learning',
+    subtitleKey: 'family_subtitle',
     icon: Icons.group_rounded,
     iconColor: Colors.white,
     iconGradient: _gMagenta,
     kind: ActivityKind.family,
   ),
   ActivityItem(
-    title: 'Drawing Activity',
-    subtitle: 'Print & draw creatively',
+    titleKey: 'drawing_activity',
+    subtitleKey: 'drawing_subtitle',
     icon: Icons.brush_rounded,
     iconColor: Colors.white,
     iconGradient: _gOrange,
     kind: ActivityKind.drawing,
   ),
   ActivityItem(
-    title: 'Memory Cards',
-    subtitle: 'Match pairs & train memory',
+    titleKey: 'memory_cards',
+    subtitleKey: 'memory_subtitle',
     icon: Icons.psychology_rounded,
     iconColor: Colors.white,
     iconGradient: _gPurple,
     kind: ActivityKind.memory,
   ),
   ActivityItem(
-    title: 'Sorting Game',
-    subtitle: 'Sort & categorize items',
+    titleKey: 'sorting_game',
+    subtitleKey: 'sorting_subtitle',
     icon: Icons.dashboard_rounded,
     iconColor: Colors.white,
     iconGradient: _gMint,
     kind: ActivityKind.sorting,
   ),
   ActivityItem(
-    title: 'Émotions',
-    subtitle: 'Sentiments',
+    titleKey: 'emotions_title',
+    subtitleKey: 'emotions_subtitle',
     icon: Icons.favorite_rounded,
     iconColor: Colors.white,
     iconGradient: _gRose,
     kind: ActivityKind.emotions,
   ),
   ActivityItem(
-    title: 'Routine',
-    subtitle: 'Plans quotidiens',
+    titleKey: 'routine_title',
+    subtitleKey: 'routine_subtitle',
     icon: Icons.calendar_month_rounded,
     iconColor: Colors.white,
     iconGradient: _gCyan,
     kind: ActivityKind.routine,
   ),
   ActivityItem(
-    title: 'Relaxation',
-    subtitle: 'Se calmer',
+    titleKey: 'relaxation_title',
+    subtitleKey: 'relaxation_subtitle',
     icon: Icons.spa_rounded,
     iconColor: Colors.white,
     iconGradient: _gGreen,
     kind: ActivityKind.relaxation,
   ),
   ActivityItem(
-    title: 'Communication',
-    subtitle: 'Pratiquer la parole',
+    titleKey: 'communication_title',
+    subtitleKey: 'communication_subtitle',
     icon: Icons.chat_rounded,
     iconColor: Colors.white,
     iconGradient: _gSunset,
@@ -188,24 +193,27 @@ const activities = <ActivityItem>[
 ];
 
 class VideoItem {
-  final String title;
-  final String tag;
+  final String titleKey;
+  final String tagKey;
   final String duration;
   final IconData icon;
   final Gradient gradient;
   const VideoItem({
-    required this.title,
-    required this.tag,
+    required this.titleKey,
+    required this.tagKey,
     required this.duration,
     required this.icon,
     required this.gradient,
   });
+
+  String get title => S.get(titleKey);
+  String get tag => S.get(tagKey);
 }
 
 const videos = <VideoItem>[
   VideoItem(
-    title: 'Hand Washing Steps',
-    tag: 'Daily life',
+    titleKey: 'video_hand_washing',
+    tagKey: 'video_daily_life',
     duration: '4 min',
     icon: Icons.wash_rounded,
     gradient: LinearGradient(
@@ -213,8 +221,8 @@ const videos = <VideoItem>[
     ),
   ),
   VideoItem(
-    title: 'Greeting a Friend',
-    tag: 'Social',
+    titleKey: 'video_greeting',
+    tagKey: 'video_social',
     duration: '3 min',
     icon: Icons.handshake_rounded,
     gradient: LinearGradient(
@@ -222,8 +230,8 @@ const videos = <VideoItem>[
     ),
   ),
   VideoItem(
-    title: 'Counting to Ten',
-    tag: 'Cognitive',
+    titleKey: 'video_counting',
+    tagKey: 'video_cognitive',
     duration: '5 min',
     icon: Icons.calculate_rounded,
     gradient: LinearGradient(

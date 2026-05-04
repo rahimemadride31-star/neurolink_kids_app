@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../app_theme.dart';
+import '../data/strings.dart';
 import '../state/app_state.dart';
 import '../widgets/kids_background.dart';
 import 'add_child_screen.dart';
@@ -12,11 +13,22 @@ class ProfileScreen extends StatelessWidget {
   String _roleLabel(UserRole r) {
     switch (r) {
       case UserRole.parent:
-        return 'Parent';
+        return S.get('role_parent');
       case UserRole.teacher:
-        return 'Enseignant';
+        return S.get('role_teacher');
       case UserRole.doctor:
-        return 'Médecin';
+        return S.get('role_doctor');
+    }
+  }
+
+  String _listTitle(UserRole r) {
+    switch (r) {
+      case UserRole.parent:
+        return S.get('my_children');
+      case UserRole.teacher:
+        return S.get('my_students');
+      case UserRole.doctor:
+        return S.get('my_patients');
     }
   }
 
@@ -25,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
     final state = AppStateScope.of(context);
     return Scaffold(
       body: KidsBackground(
-        overlayOpacity: 0.94,
+        overlayOpacity: 0.62,
         child: SafeArea(
           child: ListView(
             padding: const EdgeInsets.all(16),
@@ -74,8 +86,8 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 22),
-              const Text('Mes enfants',
-                  style: TextStyle(
+              Text(_listTitle(state.role),
+                  style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.w900)),
               const SizedBox(height: 8),
               ...state.children.asMap().entries.map((e) {
@@ -111,7 +123,7 @@ class ProfileScreen extends StatelessWidget {
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w800)),
                             Text(
-                                '${c.age} ans • ${c.gender == "Boy" ? "Garçon" : "Fille"}',
+                                '${c.age} ${S.get('years_old')} • ${c.gender == "Boy" ? S.get('boy') : S.get('girl')}',
                                 style: const TextStyle(
                                     color: AppColors.textMuted)),
                             Text(c.diagnosis,
@@ -125,32 +137,31 @@ class ProfileScreen extends StatelessWidget {
                       if (!active)
                         TextButton(
                             onPressed: () => state.setActiveChild(i),
-                            child: const Text('Activer')),
+                            child: Text(S.get('activate'))),
                     ],
                   ),
                 );
               }),
-              ListTile(
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (_) => const AddChildScreen()),
+              if (state.role == UserRole.parent)
+                ListTile(
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (_) => const AddChildScreen()),
+                  ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      side: const BorderSide(color: AppColors.border)),
+                  tileColor: Colors.white,
+                  leading: const CircleAvatar(
+                      backgroundColor: AppColors.primary,
+                      child: Icon(Icons.add, color: Colors.white)),
+                  title: Text(S.get('add_child'),
+                      style: const TextStyle(fontWeight: FontWeight.w800)),
                 ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    side: const BorderSide(color: AppColors.border)),
-                tileColor: Colors.white,
-                leading: const CircleAvatar(
-                    backgroundColor: AppColors.primary,
-                    child: Icon(Icons.add, color: Colors.white)),
-                title: const Text('Ajouter un enfant',
-                    style: TextStyle(fontWeight: FontWeight.w800)),
-              ),
               const SizedBox(height: 22),
-              const Text('Préférences',
-                  style: TextStyle(
+              Text(S.get('preferences'),
+                  style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.w900)),
-              const SizedBox(height: 8),
-              _RoleSwitchTile(),
               const SizedBox(height: 18),
               ListTile(
                 onTap: () {
@@ -166,8 +177,8 @@ class ProfileScreen extends StatelessWidget {
                         color: AppColors.accentRed.withOpacity(0.5))),
                 tileColor: Colors.white,
                 leading: const Icon(Icons.logout, color: AppColors.accentRed),
-                title: const Text('Se déconnecter',
-                    style: TextStyle(
+                title: Text(S.get('logout'),
+                    style: const TextStyle(
                         fontWeight: FontWeight.w800,
                         color: AppColors.accentRed)),
               ),
@@ -175,51 +186,6 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _RoleSwitchTile extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final state = AppStateScope.of(context);
-    Widget tile(UserRole r, IconData icon, String label) {
-      final s = state.role == r;
-      return Expanded(
-        child: GestureDetector(
-          onTap: () => state.setRole(r),
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 4),
-            padding: const EdgeInsets.symmetric(vertical: 14),
-            decoration: BoxDecoration(
-              gradient: s ? AppColors.blueGradient : null,
-              color: s ? null : Colors.white,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                  color: s ? Colors.transparent : AppColors.border),
-            ),
-            child: Column(
-              children: [
-                Icon(icon, color: s ? Colors.white : AppColors.primary),
-                const SizedBox(height: 4),
-                Text(label,
-                    style: TextStyle(
-                        color: s ? Colors.white : AppColors.textDark,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 12))
-              ],
-            ),
-          ),
-        ),
-      );
-    }
-
-    return Row(
-      children: [
-        tile(UserRole.parent, Icons.family_restroom, 'Parent'),
-        tile(UserRole.teacher, Icons.school_outlined, 'Enseignant'),
-        tile(UserRole.doctor, Icons.medical_services_outlined, 'Médecin'),
-      ],
     );
   }
 }

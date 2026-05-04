@@ -1,3 +1,4 @@
+import '../data/strings.dart';
 import 'package:flutter/material.dart';
 
 import '../app_theme.dart';
@@ -12,14 +13,14 @@ class ActivitiesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: KidsBackground(
-        overlayOpacity: 0.95,
+        overlayOpacity: 0.62,
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Toutes les activités',
+                Text(S.get('all_activities'),
                     style: TextStyle(
                         fontSize: 22, fontWeight: FontWeight.w900)),
                 const SizedBox(height: 4),

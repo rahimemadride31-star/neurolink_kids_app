@@ -1,3 +1,4 @@
+import '../data/strings.dart';
 import 'package:flutter/material.dart';
 
 import '../app_theme.dart';
@@ -5,112 +6,114 @@ import '../widgets/kids_background.dart';
 import 'assessment_results_screen.dart';
 
 class AssessmentCategory {
-  final String title;
+  final String titleKey;
   final IconData icon;
   final Color color;
-  final List<String> questions;
+  final List<String> questionKeys;
   const AssessmentCategory({
-    required this.title,
+    required this.titleKey,
     required this.icon,
     required this.color,
-    required this.questions,
+    required this.questionKeys,
   });
+  String get title => S.get(titleKey);
+  List<String> get questions => questionKeys.map(S.get).toList();
 }
 
 const assessmentCategories = <AssessmentCategory>[
   AssessmentCategory(
-    title: 'Communication sociale',
+    titleKey: 'social_communication',
     icon: Icons.groups_2_rounded,
     color: Color(0xFF22C55E),
-    questions: [
-      'A-t-il/elle des difficultés à maintenir un contact visuel ?',
-      'Répond-il/elle à son prénom quand on l\'appelle ?',
-      "A-t-il/elle du mal à exprimer ses besoins verbalement ?",
-      "Initie-t-il/elle des conversations spontanément ?",
-      "Comprend-il/elle les consignes simples ?",
-      "Imite-t-il/elle les gestes ou expressions des autres ?",
-      "Partage-t-il/elle ses centres d'intérêt avec d'autres ?",
-      "Utilise-t-il/elle des phrases complètes adaptées à son âge ?",
-      "Comprend-il/elle le second degré ou l'humour ?",
-      "Joue-t-il/elle de manière coopérative avec d'autres enfants ?",
+    questionKeys: [
+      'q_eye_contact',
+      'q_respond_name',
+      'q_express_needs',
+      'q_initiate_convo',
+      'q_simple_instructions',
+      'q_imitate_gestures',
+      'q_share_interests',
+      'q_complete_sentences',
+      'q_understand_humor',
+      'q_cooperative_play',
     ],
   ),
   AssessmentCategory(
-    title: 'Comportements et routines',
+    titleKey: 'behaviors_routines',
     icon: Icons.chat_bubble_rounded,
     color: Color(0xFF3B82F6),
-    questions: [
-      "Insiste-t-il/elle sur des routines précises ?",
-      "Réagit-il/elle fortement aux changements ?",
-      "Présente-t-il/elle des mouvements répétitifs (balancement, battement des mains) ?",
-      "Aligne-t-il/elle ses jouets de manière obsessionnelle ?",
-      "A-t-il/elle des intérêts très restreints ou intenses ?",
-      "Refuse-t-il/elle d'essayer de nouvelles activités ?",
-      "Devient-il/elle anxieux/se face à l'imprévu ?",
-      "Répète-t-il/elle les mêmes phrases ou questions ?",
-      "Fixe-t-il/elle longuement des objets en mouvement ?",
-      "Réagit-il/elle violemment aux interruptions ?",
+    questionKeys: [
+      'q_insist_routines',
+      'q_react_changes',
+      'q_repetitive_movements',
+      'q_align_toys',
+      'q_restricted_interests',
+      'q_refuse_new_activities',
+      'q_anxious_unexpected',
+      'q_repeat_phrases',
+      'q_stare_moving',
+      'q_react_interruptions',
     ],
   ),
   AssessmentCategory(
-    title: 'Sensibilité sensorielle',
+    titleKey: 'sensory_sensitivity',
     icon: Icons.headphones,
     color: Color(0xFF334155),
-    questions: [
-      "Couvre-t-il/elle ses oreilles aux sons forts ?",
-      "Refuse-t-il/elle certains vêtements à cause de leur texture ?",
-      "Évite-t-il/elle certaines lumières ou couleurs ?",
-      "Recherche-t-il/elle activement la pression ou le toucher ?",
-      "Est-il/elle dérangé(e) par certains aliments (texture, odeur) ?",
-      "Tolère-t-il/elle mal les environnements bruyants ?",
-      "Sent/lèche-t-il/elle des objets non comestibles ?",
-      "Tourne-t-il/elle sur lui/elle-même sans étourdissement ?",
-      "Évite-t-il/elle le contact physique inattendu ?",
-      "Semble-t-il/elle peu sensible à la douleur ou à la chaleur ?",
+    questionKeys: [
+      'q_cover_ears',
+      'q_refuse_clothes',
+      'q_avoid_lights',
+      'q_seek_pressure',
+      'q_food_texture',
+      'q_noisy_environments',
+      'q_smell_objects',
+      'q_spin_without_dizzy',
+      'q_avoid_physical_contact',
+      'q_low_pain_sensitivity',
     ],
   ),
   AssessmentCategory(
-    title: 'Régulation émotionnelle',
+    titleKey: 'emotional_regulation',
     icon: Icons.favorite_rounded,
     color: Color(0xFFEC4899),
-    questions: [
-      "Exprime-t-il/elle clairement ses émotions ?",
-      "Identifie-t-il/elle les émotions des autres ?",
-      "Se calme-t-il/elle facilement après une crise ?",
-      "Cherche-t-il/elle du réconfort auprès des proches ?",
-      "Manifeste-t-il/elle de l'empathie ?",
-      "Réagit-il/elle de façon adaptée à la frustration ?",
-      "Tolère-t-il/elle le fait de perdre ?",
-      "Joue-t-il/elle à des jeux d'imagination ?",
-      "Comprend-il/elle les règles sociales de base ?",
-      "Préfère-t-il/elle jouer seul(e) ?",
+    questionKeys: [
+      'q_express_emotions',
+      'q_identify_others_emotions',
+      'q_calm_after_crisis',
+      'q_seek_comfort',
+      'q_show_empathy',
+      'q_react_frustration',
+      'q_tolerate_losing',
+      'q_imaginative_play',
+      'q_understand_social_rules',
+      'q_prefer_alone',
     ],
   ),
   AssessmentCategory(
-    title: 'Vie quotidienne et développement',
+    titleKey: 'daily_life_development',
     icon: Icons.auto_awesome,
     color: Color(0xFF22C55E),
-    questions: [
-      "Mange-t-il/elle de manière autonome ?",
-      "S'habille-t-il/elle seul(e) ?",
-      "Dort-il/elle de façon stable ?",
-      "A-t-il/elle du mal à se concentrer ?",
-      "Apprend-il/elle facilement de nouvelles compétences ?",
-      "Termine-t-il/elle les tâches commencées ?",
-      "Suit-il/elle des consignes en plusieurs étapes ?",
-      "Gère-t-il/elle les transitions entre activités ?",
-      "Présente-t-il/elle un retard de motricité fine ?",
-      "Présente-t-il/elle un retard de motricité globale ?",
+    questionKeys: [
+      'q_eat_independently',
+      'q_dress_alone',
+      'q_stable_sleep',
+      'q_difficulty_concentrate',
+      'q_learn_new_skills',
+      'q_finish_tasks',
+      'q_multi_step_instructions',
+      'q_manage_transitions',
+      'q_fine_motor_delay',
+      'q_gross_motor_delay',
     ],
   ),
 ];
 
-const _answers = [
-  ('0 - Jamais', AppColors.accentGreen),
-  ('1 - Rarement', Color(0xFF60A5FA)),
-  ('2 - Parfois', Color(0xFFFBBF24)),
-  ('3 - Souvent', Color(0xFFFB923C)),
-  ('4 - Toujours', AppColors.accentRed),
+List<(String, Color)> _getAnswers() => [
+  ('0 - ${S.get('never')}', AppColors.accentGreen),
+  ('1 - ${S.get('rarely')}', const Color(0xFF60A5FA)),
+  ('2 - ${S.get('sometimes')}', const Color(0xFFFBBF24)),
+  ('3 - ${S.get('often')}', const Color(0xFFFB923C)),
+  ('4 - ${S.get('always')}', AppColors.accentRed),
 ];
 
 class AssessmentScreen extends StatefulWidget {
@@ -125,17 +128,17 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
   final Map<int, int> _responses = {};
 
   int get _total =>
-      assessmentCategories.fold(0, (sum, c) => sum + c.questions.length);
+      assessmentCategories.fold(0, (sum, c) => sum + c.questionKeys.length);
 
   ({AssessmentCategory cat, int qInCat}) _locate(int globalIndex) {
     int remaining = globalIndex;
     for (final c in assessmentCategories) {
-      if (remaining < c.questions.length) {
+      if (remaining < c.questionKeys.length) {
         return (cat: c, qInCat: remaining);
       }
-      remaining -= c.questions.length;
+      remaining -= c.questionKeys.length;
     }
-    return (cat: assessmentCategories.last, qInCat: assessmentCategories.last.questions.length - 1);
+    return (cat: assessmentCategories.last, qInCat: assessmentCategories.last.questionKeys.length - 1);
   }
 
   void _select(int answerIdx) {
@@ -157,7 +160,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
     int globalIndex = 0;
     for (final c in assessmentCategories) {
       int s = 0;
-      for (int i = 0; i < c.questions.length; i++) {
+      for (int i = 0; i < c.questionKeys.length; i++) {
         s += _responses[globalIndex] ?? 0;
         globalIndex++;
       }
@@ -175,6 +178,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
     final loc = _locate(_index);
     final cat = loc.cat;
     final selected = _responses[_index];
+    final answers = _getAnswers();
 
     return Scaffold(
       appBar: AppBar(
@@ -195,13 +199,13 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
               children: [
                 const Text('📋 ',
                     style: TextStyle(fontSize: 18)),
-                const Text('Test d\'évaluation',
-                    style: TextStyle(fontWeight: FontWeight.w800)),
+                Text(S.get('evaluation_test'),
+                    style: const TextStyle(fontWeight: FontWeight.w800)),
               ],
             ),
             const SizedBox(height: 2),
             Text(
-              'Question ${_index + 1} / $_total',
+              '${S.get('question_label')} ${_index + 1} / $_total',
               style:
                   const TextStyle(fontSize: 13, color: AppColors.textMuted),
             ),
@@ -210,7 +214,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
         toolbarHeight: 64,
       ),
       body: KidsBackground(
-        overlayOpacity: 0.95,
+        overlayOpacity: 0.62,
         child: Column(
           children: [
             ClipRRect(
@@ -254,7 +258,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Question ${loc.qInCat + 1} / ${cat.questions.length}',
+                      '${S.get('question_label')} ${loc.qInCat + 1} / ${cat.questionKeys.length}',
                       style: const TextStyle(color: AppColors.textMuted),
                     ),
                     const SizedBox(height: 14),
@@ -281,22 +285,22 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    const Text('Mode de réponse :',
-                        style: TextStyle(color: AppColors.textMuted)),
+                    Text(S.get('response_mode'),
+                        style: const TextStyle(color: AppColors.textMuted)),
                     const SizedBox(height: 6),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const [
-                        _Legend('0 =', 'Jamais'),
-                        _Legend('1 =', 'Rarement'),
-                        _Legend('2 =', 'Parfois'),
-                        _Legend('3 =', 'Souvent'),
-                        _Legend('4 =', 'Toujours'),
+                      children: [
+                        _Legend('0 =', S.get('never')),
+                        _Legend('1 =', S.get('rarely')),
+                        _Legend('2 =', S.get('sometimes')),
+                        _Legend('3 =', S.get('often')),
+                        _Legend('4 =', S.get('always')),
                       ],
                     ),
                     const SizedBox(height: 14),
-                    ...List.generate(_answers.length, (i) {
-                      final (label, color) = _answers[i];
+                    ...List.generate(answers.length, (i) {
+                      final (label, color) = answers[i];
                       final isSel = selected == i;
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),

@@ -1,3 +1,4 @@
+import '../data/strings.dart';
 import 'package:flutter/material.dart';
 
 import '../app_theme.dart';
@@ -17,8 +18,8 @@ class AssessmentResultsScreen extends StatelessWidget {
   ({String title, String level, LinearGradient gradient}) get _verdict {
     if (_ratio < 0.30) {
       return (
-        title: 'Faibles signes du spectre de l\'autisme',
-        level: 'Niveau 0 (peu ou pas de besoin de soutien)',
+        title: S.get('low_signs'),
+        level: S.get('level_0'),
         gradient: const LinearGradient(
           colors: [Color(0xFF34D399), Color(0xFF10B981)],
           begin: Alignment.topLeft,
@@ -28,8 +29,8 @@ class AssessmentResultsScreen extends StatelessWidget {
     }
     if (_ratio < 0.50) {
       return (
-        title: 'Signes légers du spectre de l\'autisme',
-        level: 'Niveau 1 (besoin de soutien léger)',
+        title: S.get('mild_signs'),
+        level: S.get('level_1'),
         gradient: const LinearGradient(
           colors: [Color(0xFFFBBF24), Color(0xFFF59E0B)],
           begin: Alignment.topLeft,
@@ -39,8 +40,8 @@ class AssessmentResultsScreen extends StatelessWidget {
     }
     if (_ratio < 0.70) {
       return (
-        title: 'Signes modérés du spectre de l\'autisme',
-        level: 'Niveau 2 (besoin de soutien important)',
+        title: S.get('moderate_signs'),
+        level: S.get('level_2'),
         gradient: const LinearGradient(
           colors: [Color(0xFFFB923C), Color(0xFFF97316)],
           begin: Alignment.topLeft,
@@ -49,8 +50,8 @@ class AssessmentResultsScreen extends StatelessWidget {
       );
     }
     return (
-      title: 'Traits marqués du spectre de l\'autisme',
-      level: 'Niveau 3 (besoin de soutien très important)',
+      title: S.get('marked_signs'),
+      level: S.get('level_3'),
       gradient: const LinearGradient(
         colors: [Color(0xFFFB7185), Color(0xFFF59E0B)],
         begin: Alignment.topLeft,
@@ -61,9 +62,9 @@ class AssessmentResultsScreen extends StatelessWidget {
 
   static ({String label, Color color}) levelFor(int score) {
     final r = score / _maxPerCategory;
-    if (r < 0.50) return (label: 'Faible', color: const Color(0xFF22C55E));
-    if (r < 0.67) return (label: 'Modérée', color: const Color(0xFFF59E0B));
-    return (label: 'Élevée', color: const Color(0xFFEF4444));
+    if (r < 0.50) return (label: S.get('low_level'), color: const Color(0xFF22C55E));
+    if (r < 0.67) return (label: S.get('moderate_level'), color: const Color(0xFFF59E0B));
+    return (label: S.get('high_level'), color: const Color(0xFFEF4444));
   }
 
   @override
@@ -82,13 +83,13 @@ class AssessmentResultsScreen extends StatelessWidget {
           color: Colors.black87,
           onPressed: () => Navigator.of(context).maybePop(),
         ),
-        title: const Row(
+        title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('📊  ', style: TextStyle(fontSize: 18)),
+            const Text('📊  ', style: TextStyle(fontSize: 18)),
             Text(
-              'Résultats du test',
-              style: TextStyle(
+              S.get('assessment_results'),
+              style: const TextStyle(
                 color: Colors.black87,
                 fontWeight: FontWeight.w800,
               ),
@@ -131,20 +132,20 @@ class AssessmentResultsScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
-              'Évaluation complétée',
+            Text(
+              S.get('evaluation_completed'),
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w900,
                 color: Color(0xFF1F2937),
               ),
             ),
             const SizedBox(height: 6),
-            const Text(
-              'Résultat estimé',
+            Text(
+              S.get('estimated_result'),
               textAlign: TextAlign.center,
-              style: TextStyle(color: AppColors.textMuted),
+              style: const TextStyle(color: AppColors.textMuted),
             ),
             const SizedBox(height: 18),
             _VerdictCard(
@@ -180,7 +181,7 @@ class AssessmentResultsScreen extends StatelessWidget {
                     (_) => false,
                   );
                 },
-                child: const Text('Retour au tableau de bord'),
+                child: Text(S.get('back_to_dashboard')),
               ),
             ),
           ],
@@ -264,9 +265,9 @@ class _ScoresCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Scores par domaine',
-            style: TextStyle(
+          Text(
+            S.get('category_scores'),
+            style: const TextStyle(
               fontWeight: FontWeight.w900,
               fontSize: 16,
               color: Color(0xFF1F2937),
@@ -370,9 +371,9 @@ class _DifficultiesCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Difficultés principales',
-            style: TextStyle(
+          Text(
+            S.get('main_difficulties'),
+            style: const TextStyle(
               fontWeight: FontWeight.w900,
               fontSize: 16,
               color: Color(0xFF1F2937),
@@ -426,24 +427,24 @@ class _DisclaimerCard extends StatelessWidget {
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Icon(Icons.info_outline_rounded, color: Color(0xFFF59E0B)),
-          SizedBox(width: 10),
+        children: [
+          const Icon(Icons.info_outline_rounded, color: Color(0xFFF59E0B)),
+          const SizedBox(width: 10),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '⚠ Mention importante',
-                  style: TextStyle(
+                  '⚠ ${S.get('disclaimer_title')}',
+                  style: const TextStyle(
                     fontWeight: FontWeight.w900,
                     color: Color(0xFF92400E),
                   ),
                 ),
-                SizedBox(height: 6),
+                const SizedBox(height: 6),
                 Text(
-                  "Ce test est un outil de dépistage préliminaire et ne constitue pas un diagnostic médical. Veuillez consulter un professionnel de santé pour une évaluation complète et précise.",
-                  style: TextStyle(
+                  S.get('disclaimer_text'),
+                  style: const TextStyle(
                     color: Color(0xFF92400E),
                     fontSize: 12,
                     height: 1.4,
